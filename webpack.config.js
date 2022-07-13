@@ -2,6 +2,7 @@ const path = require(`path`);
 
 module.exports = {
     entry: './src/index.js',
+    mode: `development`,
     output: {
       filename: 'main.js',
       path: path.resolve(__dirname, 'dist'),
@@ -13,7 +14,7 @@ module.exports = {
             type: 'asset/resource',
         },
         {
-          test: /\.s[ac]ss$/i,
+          test: /\.scss$/i,
           use: [
             // Creates `style` nodes from JS strings
             "style-loader",

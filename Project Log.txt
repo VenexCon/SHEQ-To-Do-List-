@@ -1,0 +1,24 @@
+Project Log 
+
+To-do list needs 
+
+Local Storage 
+
+A project section or seperate sections i.e. audit actions, near-misses and SHEQ actions 
+
+Each card, should be a state object with a 
+- title
+- description
+- duedate
+- Priority 
+- additonal can be catagorey e.g. audit, environemnt,accident,admin 
+
+Additional extras could include filter by X, see a list of completed actions etc. 
+
+First thoughts 
+
+A factory function that accepts the state 
+Use composition for assigning and building additional functionality 
+Array of objects to stoere cards and ES6 destructure to assign values. 
+
+Perhaps look at classes for pre-assigned options. 
