@@ -1,6 +1,45 @@
-@import url(./abstractions/layout.scss);
-@import url(./abstractions/var.scss);
+/* Imports */
 
-h1 {
-    color: red;
+@import "./abstractions/variables.scss";
+
+
+
+.nav {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+
+    .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        width: 2rem;
+        align-items: center;
+        justify-content: center;
+        margin: 0.5rem;
+        background-color: $hamburgerBG;
+
+        span {
+            display: block;
+            border: 2px solid black;
+            width: 100%;
+
+        }
+
+
+        &:hover{
+            cursor: pointer;
+            
+            span {
+                border-color: red;
+            };
+        }
+    }
+
+    .logo-wrapper {
+        border: 2px blue dashed;
+    }
 }
