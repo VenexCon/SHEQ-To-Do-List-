@@ -1,7 +1,11 @@
 import "./style/style.scss";
 import "./imgs/todoIcon.png"
-import { asideGrab } from "./app/dom";
+import { DOMGrabs } from "./app/dom";
 
-window.onload = asideGrab
+const DOM = function domEvents () {
+    DOMGrabs()
+}
+
+window.onload = DOM();
 
 

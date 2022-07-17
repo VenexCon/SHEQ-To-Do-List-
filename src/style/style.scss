@@ -213,8 +213,17 @@ body{
                 transform: rotate(180deg);
             }
         }
+        .hero-description{
+            min-width: 60%;
+            border: 2px red solid;
+            min-height: 2rem;
+            height: fit-content;
+
+        }
+
+
         .hero-catagorey{
-            width: 100%;;
+            width: 25%;;
            //border: 2px solid black;
             height: fit-content;
             text-align: center;
@@ -252,11 +261,11 @@ body{
     border-radius: 50%;
     width: 2rem;
     height:2rem;
-    //padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: 0.4s;
+    z-index: 1000;
 
     &:hover{
         cursor: pointer;
@@ -280,17 +289,22 @@ body{
 
 /* Fixed position Modal  */
 .modal-dialog{
-    width: 70vw;
+    width: 60vw;
     min-height: 10rem;
-    border: 2px solid blue;
+    height: fit-content;
+    border: 2px solid $grey;
     position: fixed;
     left: 0;
     bottom: 0;
     margin-bottom: 5rem;
     margin-left: 15%;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 0.5rem;
+
+    &.is-active{
+        display: flex;
+    }
 
     h3 {
         margin-left: 3rem;
@@ -302,22 +316,44 @@ body{
         margin: auto;
     }
 
-    .modal-form {
-        border: 2px solid black;
+    .modal-form-container {
+        //border: 2px solid black;
         width: 100%;
-        height: 8rem;
+        height: fit-content;
         display: flex;
         flex-direction: row;
+        
 
         #task-form{
-            display: flex;
+        display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: space-between;
 
         label {
             display: flex;
             flex-direction: column;
-            border: 2px dashed black;
+            //border: 2px dashed black;
             height: fit-content;
+            }
+
+        #TDLabel{
+            width: 80%;  
+        }
+
+        #task-description {
+        width: 100%;
+        height: 3rem;;
+        margin-bottom: 1rem;
+        resize: none;
+        }
+
+        button {
+            align-self: center;
+            justify-content: center;
+            padding: 0.25rem;
+
             }
         }
 
