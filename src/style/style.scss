@@ -14,6 +14,9 @@
         -webkit-font-smoothing: antialiased;
       }
 };
+body{
+    height: 200vh;
+}
 
 .app {
     position: relative;
@@ -177,6 +180,7 @@
         justify-content: space-between;
         padding: 1rem;
         transition: 0.4s;
+        z-index: 1;
 
         &:hover{
             box-shadow: 2px 4px grey;
@@ -228,6 +232,7 @@
 
 
 
+
 /*600px MQ */
 @media only screen and (max-width: 600px) {
     .aside-left {
@@ -236,9 +241,9 @@
   }
 
 
-/* Absolutely Positioned Element */
+/* Fixed Positioned Element */
 .addTaskButton{
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
     margin-bottom: 5rem;
@@ -272,3 +277,50 @@
     }
    }
 }
+
+/* Fixed position Modal  */
+.modal-dialog{
+    width: 70vw;
+    min-height: 10rem;
+    border: 2px solid blue;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 5rem;
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    h3 {
+        margin-left: 3rem;
+        font-weight: 600;
+    }
+
+    hr{
+        width: 90%;
+        margin: auto;
+    }
+
+    .modal-form {
+        border: 2px solid black;
+        width: 100%;
+        height: 8rem;
+        display: flex;
+        flex-direction: row;
+
+        #task-form{
+            display: flex;
+        flex-direction: row;
+
+        label {
+            display: flex;
+            flex-direction: column;
+            border: 2px dashed black;
+            height: fit-content;
+            }
+        }
+
+    }
+}
+

@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- Parent Container replaces body -->
-    <div class="app">
+<div class="app">
 
       <!-- Nav-bar is permenant hamburger menu -->
       <nav class="nav">
@@ -59,21 +59,49 @@
             <div class="hero-edit"><i class="fa-solid fa-gear"></i></div>
             <div class="hero-catagorey">Fire</div>
 
-          </div>
+          </div> <!-- End of hero-card -->
 
-        </div>
-      </div>
-
-
-
-  </main>
-      
-
-    </div>
-<!-- Absolutely positioned Button -->
+        </div> <!-- End of innerContainer -->
+      </div> <!-- End of cardContainer -->
+  
+    </main>
+</div>
+ 
+<!-- fixed positioned Button -->
     <div class="addTaskButton">
       <button><i class="fa-solid fa-plus"></i></button>
     </div>
+
+<!-- fixed positioned Modal -->
+    <div class="modal-dialog">
+      <h3>New Task</h3>
+        <hr>
+      <div class="modal-form">
+        <form action="#" id="task-form">
+
+          <label for="task-title">Description:
+            <input type="text" id="task-title" required placeholder="Task Description">
+          </label>
+
+          <label for="task-date">Due Date:
+            <input type ="date" required id="task-date", placeholder="dd-mm-yyyy">
+          </label>
+
+          <label for="task-priority">priority:
+            <select name="task-priority" id="task-priority">
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </label>
+
+      </form>
+        
+
+      </div>
+    </div>
+     
+
     
   </body>
 </html>
