@@ -53,10 +53,11 @@
               </label>
             </div>
 
-            <div class="hero-title">Update risk assessments for transport department</div>
+            <div class="hero-title">Update risk assessments</div>
             <div class="hero-date">Due: 13/12/1993</div>
             <div class="hero-priority">LOW</div>
             <div class="hero-edit"><i class="fa-solid fa-gear"></i></div>
+            <div class="hero-description">Description</div>
             <div class="hero-catagorey">Fire</div>
 
           </div> <!-- End of hero-card -->
@@ -76,24 +77,39 @@
     <div class="modal-dialog">
       <h3>New Task</h3>
         <hr>
-      <div class="modal-form">
+      <div class="modal-form-container">
         <form action="#" id="task-form">
 
-          <label for="task-title">Description:
-            <input type="text" id="task-title" required placeholder="Task Description">
+          <label for="task-title">Title:
+            <input type="text" id="task-title" required placeholder="Task Title">
           </label>
 
           <label for="task-date">Due Date:
             <input type ="date" required id="task-date", placeholder="dd-mm-yyyy">
           </label>
 
-          <label for="task-priority">priority:
+          <label for="task-priority">Priority:
             <select name="task-priority" id="task-priority">
               <option value="high">High</option>
               <option value="medium">Medium</option>
               <option value="low">Low</option>
             </select>
           </label>
+
+          <label for="task-catagorey">Catagorey:
+            <select name="task-catagorey" id="task-catagorey">
+              <option value="safety">Safety</option>
+              <option value="Environmental">Environmental</option>
+              <option value="health">Health</option>
+              <option value="quality">Quality</option>
+            </select>
+          </label>
+
+          <label for="task-description" id="TDLabel">Description:
+            <textarea name="description" id="task-description" cols="30" rows="10"></textarea>
+          </label>
+
+          <button type="submit">submit</button>
 
       </form>
         
