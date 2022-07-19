@@ -1,6 +1,9 @@
+//Imports
+ 
+import { createNewHero, clearForm } from "./dom"; //Called during the collectformData element as Test
 
-//factory Function 
 
+//factory Function
 function Taskobject (title, date, priority, catagorey, description) {
   return {  
     title,
@@ -24,7 +27,8 @@ function collectFormData (e) {
     const description = document.getElementById("task-description").value;
 
     let newTask = Taskobject(title, date, priority,catagorey,description)
-    return console.log(newTask);
+
+    return newTask
 
 };
 
@@ -32,9 +36,13 @@ function collectFormData (e) {
 function collectForm (e) {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
-        collectFormData(e);
+        createNewHero(collectFormData(e))
+        return clearForm();
       });
 };
+
+
+
 
 
 
