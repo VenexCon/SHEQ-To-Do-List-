@@ -1,6 +1,7 @@
 /* Imports */
 
 @import "./abstractions/variables.scss";
+@import "./abstractions/nav-bar.scss";
 
 *{
     padding: 0;
@@ -23,130 +24,6 @@ body{
 }
 
 
-/* Nav */
-.nav {
-    position:relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    background-color: $navBGcolor;
-    align-items: center;
-    height: 4rem;;
-
-
-    .hamburger-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        width: 2.5rem;
-        height:4rem;
-        padding: 0.5rem;
-        align-items: center;
-        justify-content: center;
-        background-color: $teal;
-
-        span {
-            display: block;
-            border: 2px solid black;
-            width: 100%;
-            transition: 0.4s;
-
-        }
-
-
-        &:hover{
-            cursor: pointer;
-            
-            span {
-                border-color: $spanHover ;
-            };
-        }
-
-        &:active{
-            border-color: $white;
-        }
-    };
-
-    .title-wrapper {
-        margin: auto;
-        justify-self: center;
-        align-self: center;
-
-        .title {
-            color: white;
-        }
-    };
-
-}
-/* Aside enters upon hamburger click */
-
-.main {
-    display: flex;
-    flex-direction: row;
-    transition: 0.4s;
-}
-
-
-.aside-left {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    width: 15vw;
-    height: 90vh;
-    align-items: center;
-    left: -100%;
-    transition: 0.4s;
-    background-color: $white;
-    z-index: 100;
-
-    &.is-active{
-        display:flex;
-        position: fixed;
-        left: 0;
-    }
-
-    .nav-links {
-        margin-top: 2rem;;
-        //border: 2px solid black;;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        gap: 1rem;
-        align-items: center;
-
-
-        button {
-            cursor: pointer;
-            width:80%;
-            border: none;
-            min-height: 1.5rem;
-            height: fit-content;
-            border-radius: 3px;
-            font-weight: bolder;
-            transition: 0.2s;
-
-            &:hover {
-                background-color: $teal;
-                color: $white;
-            }
-
-            &.add-project:before {
-                font: var(--fa-font-solid);
-                content: "\f0fe";
-                margin-right: 1rem;
-                };
-            }
-
-            hr {
-                width: 80%;
-                border: 1px solid black;
-            }
-
-        };
-
-}
 
 .cardcontainer {
     //border: 2px solid red;
