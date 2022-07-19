@@ -18,6 +18,15 @@ function newTaskGrab () {
 }
 
 
+function displayNewHero (object) {
+    let {title, date,priority,catagorey,description,} = object;
+    const container = document.querySelector("innerContainer")
+    
+    const heroCard = document.createElement("Div"); 
+        heroCard.classList.add("hero-card");
+    
+}
+
 function DOMGrabs () {
     asideGrab();
     newTaskGrab();
