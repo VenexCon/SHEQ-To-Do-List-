@@ -1,6 +1,6 @@
 //Imports
  
-import { createNewHero, clearForm } from "./dom"; //Called during the collectformData element as Test
+import { createNewHero, clearForm, displayForm } from "./dom"; //Called during the collectformData
 
 
 //factory Function
@@ -37,7 +37,8 @@ function collectForm (e) {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
         createNewHero(collectFormData(e))
-        return clearForm();
+        displayForm()
+        return clearForm()  
       });
 };
 
