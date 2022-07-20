@@ -92,7 +92,6 @@ body{
         }
         .hero-description{
             min-width: 60%;
-            border: 2px red solid;
             min-height: 2rem;
             height: fit-content;
 
@@ -104,8 +103,6 @@ body{
            //border: 2px solid black;
             height: fit-content;
             text-align: center;
-            background-color: rgba(252, 33, 33, 0.795);
-            color: $white;
             font-weight: bold;
             border-radius: 3px;
             vertical-align: middle;

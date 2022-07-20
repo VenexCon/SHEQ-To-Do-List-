@@ -81,6 +81,7 @@ function createNewHero (object) {
                         
     const heroCatagorey = document.createElement("div");
         heroCatagorey.className = "hero-catagorey";
+            heroCatagorey.setAttribute("id", `${catagorey}`)
            const catagoreyText = document.createElement("p")
                 catagoreyText.innerText = `${catagorey}`;
                     heroCatagorey.appendChild(catagoreyText)

@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=B612+Mono&family=Lato:wght@300&display=swap");
+.hero-catagorey #high {
+  background-color: Red;
+  color: white;
+}
+
+.hero-catagorey #medium {
+  background-color: orangered;
+  color: white;
+}
+
+.hero-catagorey #high {
+  background-color: green;
+}
+/*# sourceMappingURL=variables.css.map */
