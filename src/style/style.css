@@ -91,7 +91,6 @@
 }
 
 .nav .company-logo {
-  border: 2px solid red;
   width: 4rem;
   height: 4rem;
 }
@@ -128,7 +127,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  left: -100%;
+  left: -200%;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   background-color: white;
@@ -280,11 +279,17 @@ body {
 .cardcontainer .hero-card .hero-icon {
   font-size: 1.5rem;
   width: 1.5rem;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
 }
 
 .cardcontainer .hero-card .hero-title {
   max-width: 50%;
-  margin-left: 0;
+  border: 2px solid red;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .cardcontainer .hero-card .hero-edit {
@@ -302,6 +307,7 @@ body {
 
 .cardcontainer .hero-card .hero-description {
   min-width: 60%;
+  width: 80%;
   min-height: 2rem;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -309,7 +315,10 @@ body {
 }
 
 .cardcontainer .hero-card .hero-catagorey {
-  width: 25%;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  width: 10%;
   border: 2px solid black;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -324,6 +333,12 @@ body {
 @media only screen and (max-width: 600px) {
   .aside-left {
     width: 100vw;
+  }
+  .hero-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 
@@ -354,7 +369,7 @@ body {
 
 .addTaskButton:hover {
   cursor: pointer;
-  background-color: grey;
+  background-color: #d89313;
 }
 
 .addTaskButton button {
@@ -381,23 +396,32 @@ body {
   height: -moz-fit-content;
   height: fit-content;
   border: 2px solid grey;
+  border-radius: 5px;
   position: fixed;
   left: 0;
   bottom: 0;
-  margin-bottom: 5rem;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  margin-bottom: 8rem;
   margin-left: 15%;
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 0.5rem;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  background-color: white;
+  z-index: 1000;
+  padding: 0.5em;
 }
 
 .modal-dialog.is-active {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .modal-dialog h3 {
@@ -471,6 +495,6 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 0.25rem;
+  padding: 0.15rem;
 }
 /*# sourceMappingURL=style.css.map */

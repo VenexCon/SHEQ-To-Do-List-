@@ -6,13 +6,26 @@ function displayAside () {
     hamburger.addEventListener("click", () => {
         return aside.classList.toggle("is-active");
     })
-    
 };
 
 function displayForm () { 
     const modal = document.querySelector(".modal-dialog");
     return modal.classList.toggle("is-active");
 }
+
+function closeModals () {
+   const modals = Array.from(document.querySelectorAll(".modal"));
+    return modals.forEach(element => element.classList.remove("is-active"))
+
+};
+
+function closeModalEL () {
+    document.addEventListener("click", (e) => {
+        if(!e.target.classList === ".modal"){
+            closeModals()
+        }
+    })
+};
 
  
 function newTaskGrab () { // displays form upon plus symbol click
@@ -99,6 +112,7 @@ function clearForm () {
 function DOMGrabs () {
     displayAside();
     newTaskGrab();
+    closeModalEL()
 }
 
 export {DOMGrabs, createNewHero, clearForm, displayForm};

@@ -73,12 +73,13 @@ body{
         .hero-icon {
             font-size: 1.5rem;
             width: 1.5rem;
+            flex-grow: 0;
         }
 
         .hero-title {
             max-width: 50%;
-            margin-left: 0;
-            //border: 2px solid red;
+            border: 2px solid red;
+            flex-grow: 1;
         }
         .hero-edit {
             font-size: 1.25rem;
@@ -92,6 +93,7 @@ body{
         }
         .hero-description{
             min-width: 60%;
+            width: 80%;
             min-height: 2rem;
             height: fit-content;
 
@@ -99,7 +101,8 @@ body{
 
 
         .hero-catagorey{
-            width: 25%;;
+            min-width: fit-content;
+            width: 10%;
             border: 2px solid black;
             height: fit-content;
             text-align: center;
@@ -120,6 +123,10 @@ body{
 @media only screen and (max-width: 600px) {
     .aside-left {
         width: 100vw;
+    }
+
+    .hero-card {
+        flex-direction: column;
     }
   }
 
@@ -143,7 +150,7 @@ body{
 
     &:hover{
         cursor: pointer;
-        background-color: $grey;
+        background-color: $orange;
     }
 
    button {
@@ -167,17 +174,23 @@ body{
     min-height: 10rem;
     height: fit-content;
     border: 2px solid $grey;
+    border-radius: 5px;
     position: fixed;
     left: 0;
     bottom: 0;
-    margin-bottom: 5rem;
+    transform: scale(0);
+    margin-bottom: 8rem;
     margin-left: 15%;
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    transition: 0.4s;
+    background-color: $white;
+    z-index: 1000;
+    padding: 0.5em;
 
     &.is-active{
-        display: flex;
+        transform: scale(1);
     }
 
     h3 {
@@ -226,7 +239,7 @@ body{
         button {
             align-self: center;
             justify-content: center;
-            padding: 0.25rem;
+            padding: 0.15rem;
 
             }
         }
