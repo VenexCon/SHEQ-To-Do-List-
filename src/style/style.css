@@ -310,6 +310,7 @@ body {
 
 .cardcontainer .hero-card .hero-catagorey {
   width: 25%;
+  border: 2px solid black;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
