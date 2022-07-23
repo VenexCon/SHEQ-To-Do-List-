@@ -1,6 +1,6 @@
 //Imports
  
-import { createNewHero, clearForm, displayForm } from "./dom"; //Called during the collectformData
+import { createNewHero, clearForm, modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
 
 
 //factory Function
@@ -37,8 +37,9 @@ function collectForm (e) {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
         createNewHero(collectFormData(e))
-        displayForm()
-        return clearForm()  
+        modalClassToggle();
+        overlayToggle()
+        return clearForm();  
       });
 };
 

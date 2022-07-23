@@ -13,17 +13,22 @@
         display: inline-block;
         text-rendering: auto;
         -webkit-font-smoothing: antialiased;
-      }
+    }
 };
+
 body{
     height: 200vh;
-}
+};
 
 .app {
     position: relative;
-}
+};
 
-
+.main {
+    display: flex;
+    flex-direction: row;
+    transition: 0.4s;
+};
 
 .cardcontainer {
     //border: 2px solid red;
@@ -80,6 +85,7 @@ body{
             max-width: 50%;
             border: 2px solid red;
             flex-grow: 1;
+            text-align: left;
         }
         .hero-edit {
             font-size: 1.25rem;
@@ -113,7 +119,7 @@ body{
 
         
     }
-}
+};
 
 
 
@@ -128,7 +134,7 @@ body{
     .hero-card {
         flex-direction: column;
     }
-  }
+};
 
 
 /* Fixed Positioned Element */
@@ -166,10 +172,10 @@ body{
         transform: rotate(180deg);
     }
    }
-}
+};
 
 /* Fixed position Modal  */
-.modal-dialog{
+.modal-container{
     width: 60vw;
     min-height: 10rem;
     height: fit-content;
@@ -245,5 +251,20 @@ body{
         }
 
     }
-}
+};
 
+/*OVERLAY */ 
+.overlay {
+    position: absolute;
+    display: none;
+    
+    &.is-active{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: block;
+    z-index: 999; // 1 less than the modal
+    }
+
+};

@@ -1,14 +1,43 @@
+//DOM Grabs
+//Aside fills screen in mobile
+function displayAside () {
+    const aside = document.querySelector(".aside-left")
+    const hamburger = document.querySelector(".hamburger-menu")
+    hamburger.addEventListener("click", () => {
+        return aside.classList.toggle("is-active");
+    })
+};
+//currently only the add-task pop-up is considered a modal
+function modalClassToggle () {
+    const modal = document.querySelector(".modal-container")
+    return modal.classList.toggle("is-active")
+};
 
+function overlayToggle () {
+    const overlay = document.querySelector(".overlay")
+    return overlay.classList.toggle("is-active");
+}
 
+/* removals modals on click in background*/
+function overlayRemoveModals () {
+    const overlay = document.querySelector(".overlay");
+    overlay.addEventListener("click", () => {
+        overlayToggle()
+        modalClassToggle()
+    })
+};
+
+/* displays modal upon taskbtn click  */
+function taskBtnEL () {
+    const taskBtn = document.querySelector(".addTaskButton")
+    taskBtn.addEventListener("click", (e) => {
+        modalClassToggle();
+        overlayToggle ()
+    })
+};
 
 
  
-function newTaskGrab () { // displays form upon plus symbol click
-    const newTaskBtn = document.querySelector(".addTaskButton")
-        newTaskBtn.addEventListener("click", () => {
-            displayForm();
-        });
-    };
 
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
@@ -76,17 +105,22 @@ function createNewHero (object) {
                         heroCard.appendChild(heroCatagorey);
  
     console.log("taskDOMcreated");
-}
+};
 
 
+//exported to factory.js 
 function clearForm () { 
     const form = document.getElementById("task-form")
     form.reset()
-}
+};
 
+
+//exported to index.js
 function DOMGrabs () {
     displayAside();
-    newTaskGrab();
-}
+    taskBtnEL();
+    overlayRemoveModals();
+};
 
-export {DOMGrabs, createNewHero, clearForm, displayForm};
+
+export {DOMGrabs, createNewHero, clearForm, modalClassToggle, overlayToggle};
