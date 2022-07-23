@@ -76,13 +76,13 @@
     height: 90vh;
     align-items: center;
     left: -200%;
-    transition: 0.4s;
+    transition: 0.5s;
     background-color: $white;
     z-index: 100;
 
     &.is-active{
         display:flex;
-        position: fixed;
+        position: static;
         left: 0;
     }
 
@@ -91,7 +91,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        //border: 2px solid black;
+        border: 2px solid black;
         gap: 1rem;
         align-items: center;
 
@@ -127,4 +127,18 @@
 
         };
 
+
 }
+
+/* MQ 600PX */
+
+@media only screen and (max-width: 600px) {
+    .aside-left {
+        width: 100vw;
+        ;
+
+        &.is-active {
+            position: fixed
+        }
+    }
+};

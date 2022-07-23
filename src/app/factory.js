@@ -29,10 +29,9 @@ function collectFormData (e) {
     let newTask = Taskobject(title, date, priority,catagorey,description)
 
     return newTask
-
 };
 
-
+/* Currently displays the collected inputs on the DOM */
 function collectForm (e) {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
@@ -43,5 +42,8 @@ function collectForm (e) {
       });
 };
 
+
+
+/* Storage Test */
 
 export {collectForm}

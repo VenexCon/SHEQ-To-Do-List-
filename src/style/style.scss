@@ -27,7 +27,7 @@ body{
 .main {
     display: flex;
     flex-direction: row;
-    transition: 0.4s;
+    transition: 1s;
 };
 
 .cardcontainer {
@@ -115,6 +115,7 @@ body{
             font-weight: bold;
             border-radius: 3px;
             vertical-align: middle;
+            padding: 0.25rem;
         }
 
         
@@ -127,12 +128,16 @@ body{
 
 /*600px MQ */
 @media only screen and (max-width: 600px) {
-    .aside-left {
-        width: 100vw;
-    }
-
     .hero-card {
         flex-direction: column;
+    }
+
+    .modal-form-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+        text-align: center
     }
 };
 
