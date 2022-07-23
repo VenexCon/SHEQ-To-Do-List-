@@ -40,7 +40,10 @@ function taskBtnEL () {
 
 /*Date formatting*/ 
 function formatDate (date) {
+    if (typeof date === 'string'){
     return format (parseISO(date), `dd/MM/yyyy`)
+    } 
+    return format(date, `dd/MM/yyyy`);
 };
 
 
@@ -75,7 +78,7 @@ function createNewHero (object) {
     const heroDate = document.createElement("div")
         heroDate.classList.add("hero-date")
             const dateText = document.createElement("p")
-            const objdate = formatDate(date); 
+              const objdate = formatDate(date); 
                 dateText.innerText = `Due Date: ${objdate}`;
                     heroDate.appendChild(dateText)
                         heroCard.appendChild(heroDate);
@@ -118,6 +121,7 @@ function clearForm () {
     const form = document.getElementById("task-form")
     form.reset()
 };
+
 
 
 //exported to index.js

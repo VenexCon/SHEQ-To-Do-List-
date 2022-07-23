@@ -31,11 +31,28 @@ function collectFormData (e) {
     return newTask
 };
 
+/* Storage Test */
+function sendToStorage (obj) {
+  const {title} = obj
+  return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
+};
+
+function retrieveFromStorage () {
+  const obj = window.localStorage;
+  for(const key in obj){
+    let oldTask = JSON.parse(window.localStorage.getItem(key))
+    createNewHero(oldTask)
+  }
+}
+
+
+
 /* Currently displays the collected inputs on the DOM */
 function collectForm (e) {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
         createNewHero(collectFormData(e))
+        sendToStorage(collectFormData(e))
         modalClassToggle();
         overlayToggle()
         return clearForm();  
@@ -43,7 +60,4 @@ function collectForm (e) {
 };
 
 
-
-/* Storage Test */
-
-export {collectForm}
+export {collectForm, retrieveFromStorage}
