@@ -1,3 +1,5 @@
+import { format, compareAsc, formatRFC3339, parseISO } from 'date-fns'
+
 //DOM Grabs
 //Aside fills screen in mobile
 function displayAside () {
@@ -36,8 +38,11 @@ function taskBtnEL () {
     })
 };
 
+/*Date formatting*/ 
+function formatDate (date) {
+    return format (parseISO(date), `dd/MM/yyyy`)
+};
 
- 
 
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
@@ -60,7 +65,6 @@ function createNewHero (object) {
         heroCheck.appendChild(labelforCheck)
         heroCard.appendChild(heroCheck);
 
-
     const heroTitle = document.createElement("div"); 
         heroTitle.classList.add("hero-date");
             const titleText = document.createElement("p")
@@ -71,7 +75,8 @@ function createNewHero (object) {
     const heroDate = document.createElement("div")
         heroDate.classList.add("hero-date")
             const dateText = document.createElement("p")
-                dateText.innerText = `Due Date:${date}`;
+            const objdate = formatDate(date); 
+                dateText.innerText = `Due Date: ${objdate}`;
                     heroDate.appendChild(dateText)
                         heroCard.appendChild(heroDate);
     

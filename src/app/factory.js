@@ -14,11 +14,11 @@ function Taskobject (title, date, priority, catagorey, description) {
   }
 };
 
+/* Collects data from form inputs for local storage and DOM creation */
 function collectFormData (e) {
 
   e.preventDefault();
   console.log("form prevented")
-    //collect values
 
     const title = document.getElementById("task-title").value;
     const date = document.getElementById("task-date").value;
@@ -42,10 +42,6 @@ function collectForm (e) {
         return clearForm();  
       });
 };
-
-
-
-
 
 
 export {collectForm}

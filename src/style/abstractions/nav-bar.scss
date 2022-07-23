@@ -50,6 +50,8 @@
 
         .title {
             color: white;
+            font-size: 2rem;
+            font-weight: bolder;
         }
     };
 
@@ -84,12 +86,12 @@
         left: 0;
     }
 
-    .nav-links {
+    .aside-links {
         margin-top: 2rem;;
-        //border: 2px solid black;;
         display: flex;
         flex-direction: column;
         width: 100%;
+        //border: 2px solid black;
         gap: 1rem;
         align-items: center;
 
@@ -99,6 +101,8 @@
             width:80%;
             border: none;
             min-height: 1.5rem;
+            min-height: 2rem;
+            font-size: large;
             height: fit-content;
             border-radius: 3px;
             font-weight: bolder;
