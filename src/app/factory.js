@@ -1,5 +1,7 @@
 //Imports
- 
+
+
+import { el } from "date-fns/locale";
 import { createNewHero, clearForm, modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
 
 //factory Function
@@ -30,12 +32,16 @@ function collectFormData (e) {
     return newTask
 };
 
-/* Storage Test, key set as title of task, will need to be adapted for project storage */
+function timeStamp () {
+  
+};
+/* Storage Test, key will be a time-stamp from function*/
 function sendToStorage (obj) {
-  const {title} = obj
-  return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
+  const key = new date().toString();
+  return window.localStorage.setItem(key, JSON.stringify(obj));
 };
 
+/* Retrives from storage */
 function retrieveFromStorage () {
   let storedobjects = [];
   for(const key in window.localStorage){
@@ -45,28 +51,31 @@ function retrieveFromStorage () {
     }
     return storedobjects
 };
+/* Creates cards from LS, and adds methods*/
+function createFromStorage () {
+  let storedobjects = retrieveFromStorage();
+  storedobjects.forEach(object => {
+    addMethod(object)
+    createNewHero(object);
+  })
+};
 
 const removeSelf = (obj) => ({
   deleteself: () => localStorage.removeItem(obj.title)
 });
 
-function createFromStorage () {
-  let storedobjects = retrieveFromStorage();
-  storedobjects.forEach(object => {
-    let newObject = addMethod(object)
-    createNewHero(newObject);
-    console.log(newObject)
-  })
-};
-
-
-
 function addMethod (object) {
-  return Object.assign(object, removeSelf(object))
-  
+  return Object.assign(object, removeSelf(object)) 
 };
 
-
+function removeObject () {
+  const array = document.querySelectorAll(".hero-title")
+    document.addEventListener("click", (e) => {
+      let key = (e.target.closest(`.hero-card`).querySelector(".hero-date").innerText);
+      console.log(key)
+      return localStorage.removeItem(key)
+    })
+}
 
 /* Currently displays the collected inputs on the DOM */
 function collectForm (e) {
@@ -81,4 +90,4 @@ function collectForm (e) {
 };
 
 
-export {collectForm, createFromStorage}
+export {collectForm, createFromStorage, removeObject}

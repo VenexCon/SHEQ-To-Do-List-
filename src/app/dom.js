@@ -1,4 +1,4 @@
-import { format, compareAsc, formatRFC3339, parseISO } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 
 //DOM Grabs
 //Aside fills screen in mobile
@@ -46,7 +46,6 @@ function formatDate (date) {
     return format(date, `dd/MM/yyyy`);
 };
 
-
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
     let {title, date,priority,catagorey,description,} = object;
@@ -93,7 +92,7 @@ function createNewHero (object) {
     const heroEditIcon = document.createElement("div")
         heroEditIcon.classList.add("hero-edit");
             const icon = document.createElement("i")
-                icon.className = "fa-solid fa-gear" 
+                icon.className = "fa-solid fa-gear"; 
                     heroEditIcon.appendChild(icon)
                         heroCard.appendChild(heroEditIcon);
     
