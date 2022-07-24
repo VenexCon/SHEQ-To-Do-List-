@@ -2,7 +2,6 @@
  
 import { createNewHero, clearForm, modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
 
-
 //factory Function
 function Taskobject (title, date, priority, catagorey, description) {
   return {  
@@ -31,19 +30,41 @@ function collectFormData (e) {
     return newTask
 };
 
-/* Storage Test */
+/* Storage Test, key set as title of task, will need to be adapted for project storage */
 function sendToStorage (obj) {
   const {title} = obj
   return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
 };
 
 function retrieveFromStorage () {
-  const obj = window.localStorage;
-  for(const key in obj){
-    let oldTask = JSON.parse(window.localStorage.getItem(key))
-    createNewHero(oldTask)
-  }
-}
+  let storedobjects = [];
+  for(const key in window.localStorage){
+   let object = JSON.parse(window.localStorage.getItem(key))
+      if (object === null) {break;}
+      storedobjects.push(object);
+    }
+    return storedobjects
+};
+
+const removeSelf = (obj) => ({
+  deleteself: () => localStorage.removeItem(obj.title)
+});
+
+function createFromStorage () {
+  let storedobjects = retrieveFromStorage();
+  storedobjects.forEach(object => {
+    let newObject = addMethod(object)
+    createNewHero(newObject);
+    console.log(newObject)
+  })
+};
+
+
+
+function addMethod (object) {
+  return Object.assign(object, removeSelf(object))
+  
+};
 
 
 
@@ -60,4 +81,4 @@ function collectForm (e) {
 };
 
 
-export {collectForm, retrieveFromStorage}
+export {collectForm, createFromStorage}

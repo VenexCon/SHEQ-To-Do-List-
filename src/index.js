@@ -1,12 +1,14 @@
 import "./style/style.scss";
 import { DOMGrabs } from "./app/dom";
-import { collectForm, retrieveFromStorage } from "./app/factory";
+import { collectForm, createFromStorage} from "./app/factory";
+
 
 
 const DOM = function domEvents (e) {
-    DOMGrabs(e)
-    collectForm(e)
-    retrieveFromStorage()
+    DOMGrabs(e);
+    collectForm(e);
+    createFromStorage();
+   
 };
 
 window.onload = DOM();

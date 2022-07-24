@@ -69,7 +69,7 @@ function createNewHero (object) {
         heroCard.appendChild(heroCheck);
 
     const heroTitle = document.createElement("div"); 
-        heroTitle.classList.add("hero-date");
+        heroTitle.classList.add("hero-title");
             const titleText = document.createElement("p")
                 titleText.innerText = `${title}`;
                     heroTitle.appendChild(titleText);
