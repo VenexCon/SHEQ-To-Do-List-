@@ -35,10 +35,12 @@ function collectFormData (e) {
 function timeStamp () {
   
 };
-/* Storage Test, key will be a time-stamp from function*/
+
+/* time_stamp is used to retrieve for edit and deletion*/
 function sendToStorage (obj) {
-  const key = new date().toString();
-  return window.localStorage.setItem(key, JSON.stringify(obj));
+  const time_stamp = new Date().toString();
+  object.setAttribute("data-key", `${time_stamp}`)
+  return window.localStorage.setItem(`time_stamp`, JSON.stringify(obj));
 };
 
 /* Retrives from storage */
@@ -60,9 +62,11 @@ function createFromStorage () {
   })
 };
 
+/* Place these in SEPERATE FILE, ADD GETTERS AND SETTERS FOR EDITING PURPOSES*/
 const removeSelf = (obj) => ({
   deleteself: () => localStorage.removeItem(obj.title)
 });
+
 
 function addMethod (object) {
   return Object.assign(object, removeSelf(object)) 
