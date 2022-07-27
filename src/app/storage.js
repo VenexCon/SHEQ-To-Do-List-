@@ -1,4 +1,4 @@
-
+import {createNewHero} from "./factory.js"
 
 const localStored = (() => {
    
