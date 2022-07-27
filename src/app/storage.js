@@ -1,8 +1,7 @@
 import {createNewHero} from "./dom.js"
 
-const localStored = {
-   
-    storedObjects : () => {
+
+const storedObjects = () => {
         let storedobjects = [];
         for(const key in window.localStorage){
          let object = JSON.parse(window.localStorage.getItem(key))
@@ -12,19 +11,19 @@ const localStored = {
           return storedobjects
         },
 
-    create: () => {
+const create = () => {
             let storedobjects = storedObjects();
               storedobjects.forEach(object => {
                 createNewHero(object);
             })
         },
 
-    send: (object) => {
+const send = (object) => {
             const {title} = object
             return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
     }
 
-};
 
 
-export {localStored}
+
+export {storedObjects, create, send}
