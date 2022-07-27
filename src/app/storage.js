@@ -9,19 +9,19 @@ const storedObjects = () => {
             storedobjects.push(object);
           }
           return storedobjects
-        },
+        };
 
 const create = () => {
             let storedobjects = storedObjects();
               storedobjects.forEach(object => {
                 createNewHero(object);
             })
-        },
+        };
 
 const send = (object) => {
-            const {title} = object
+            const {title} = object;
             return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
-    }
+    };
 
 
 
