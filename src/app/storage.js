@@ -13,7 +13,7 @@ const localStored = {
         },
 
     create: () => {
-            let storedobjects = retrieveFromStorage();
+            let storedobjects = storedObjects();
               storedobjects.forEach(object => {
                 createNewHero(object);
             })
