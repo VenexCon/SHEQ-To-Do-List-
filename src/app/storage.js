@@ -22,9 +22,9 @@ const localStored = {
     send: (object) => {
             const {title} = object
             return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
-       {,
+    }
 
-}
+};
 
 
 export {localStored}
