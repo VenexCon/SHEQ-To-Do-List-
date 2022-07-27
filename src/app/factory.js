@@ -1,8 +1,10 @@
 //Imports
 
-
-import { el } from "date-fns/locale";
+import { add } from "date-fns";
 import { createNewHero, clearForm, modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
+import {localStored} from "./storage"
+
+const storedLocal = localStored()
 
 //factory Function
 function Taskobject (title, date, priority, catagorey, description) {
@@ -13,6 +15,18 @@ function Taskobject (title, date, priority, catagorey, description) {
     catagorey,
     description,
   }
+};
+
+/* Place these in SEPERATE FILE, ADD GETTERS AND SETTERS FOR EDITING PURPOSES*/
+
+
+function deleteObject (e) {
+  
+    localStored.storrageArray().forEach(object =>{
+      if(e.target.closest(".hero-card").querySelector(".hero-title").innerText === object.title){
+        object.deleteself();
+      } 
+    })
 };
 
 /* Collects data from form inputs for local storage and DOM creation */
@@ -32,18 +46,14 @@ function collectFormData (e) {
     return newTask
 };
 
-function timeStamp () {
-  
-};
-
 /* time_stamp is used to retrieve for edit and deletion*/
 function sendToStorage (obj) {
-  const time_stamp = new Date().toString();
-  object.setAttribute("data-key", `${time_stamp}`)
-  return window.localStorage.setItem(`time_stamp`, JSON.stringify(obj));
+  const {title} = obj
+  return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
 };
 
-/* Retrives from storage */
+
+/* Retrives from storage and returns array of objects to be modified*/
 function retrieveFromStorage () {
   let storedobjects = [];
   for(const key in window.localStorage){
@@ -53,36 +63,17 @@ function retrieveFromStorage () {
     }
     return storedobjects
 };
+
 /* Creates cards from LS, and adds methods*/
 function createFromStorage () {
   let storedobjects = retrieveFromStorage();
-  storedobjects.forEach(object => {
-    addMethod(object)
-    createNewHero(object);
-  })
-};
-
-/* Place these in SEPERATE FILE, ADD GETTERS AND SETTERS FOR EDITING PURPOSES*/
-const removeSelf = (obj) => ({
-  deleteself: () => localStorage.removeItem(obj.title)
-});
-
-
-function addMethod (object) {
-  return Object.assign(object, removeSelf(object)) 
-};
-
-function removeObject () {
-  const array = document.querySelectorAll(".hero-title")
-    document.addEventListener("click", (e) => {
-      let key = (e.target.closest(`.hero-card`).querySelector(".hero-date").innerText);
-      console.log(key)
-      return localStorage.removeItem(key)
+    storedobjects.forEach(object => {
+      createNewHero(object);
     })
-}
+};
 
 /* Currently displays the collected inputs on the DOM */
-function collectForm (e) {
+function collectForm () {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
         createNewHero(collectFormData(e))
@@ -94,4 +85,5 @@ function collectForm (e) {
 };
 
 
-export {collectForm, createFromStorage, removeObject}
+
+export {collectForm, createFromStorage,}
