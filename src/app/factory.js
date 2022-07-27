@@ -4,8 +4,6 @@ import { add } from "date-fns";
 import { createNewHero, clearForm, modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
 import {localStored} from "./storage"
 
-const storedLocal = localStored()
-
 //factory Function
 function Taskobject (title, date, priority, catagorey, description) {
   return {  
@@ -22,7 +20,7 @@ function Taskobject (title, date, priority, catagorey, description) {
 
 function deleteObject (e) {
   
-    localStored.storrageArray().forEach(object =>{
+    localStored.storedObjects().forEach(object =>{
       if(e.target.closest(".hero-card").querySelector(".hero-title").innerText === object.title){
         object.deleteself();
       } 
