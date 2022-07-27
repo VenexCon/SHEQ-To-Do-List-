@@ -6,7 +6,7 @@ import {createNewHero} from "./dom.js"
 // call the setter method 
 // add back into LS, overwriting existing stringified object
 // Key is currently task title
-// Array is created all instance of method call, not existing inperpetuity
+// Array is created all instance of method call, not existing in perpetuity
 
 function storedObjects () {
         let storedobjects = [];
