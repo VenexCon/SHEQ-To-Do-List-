@@ -1,6 +1,6 @@
 //Imports
-import { clearDOM, createNewHero, modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
-import {storedObjects, createCardFromLS, sendToLocalStorage} from "./storage"
+import { clearDOM, modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
+import { createCardFromLS, sendToLocalStorage} from "./storage"
 
 //factory Function for form.value structure
 function Taskobject (title, date, priority, catagorey, description) {
@@ -18,7 +18,7 @@ function collectFormData (e) {
 
   e.preventDefault();
   console.log("form submission prevented")
-
+    //title has trim function, as it is used as a key in sendToLocalStorage
     const title = document.getElementById("task-title").value.trim();
     const date = document.getElementById("task-date").value;
     const priority = document.getElementById("task-priority").value;
@@ -36,7 +36,7 @@ function clearForm () {
 };
 
 
-/* Currently displays the collected inputs on the DOM, Review splitting of this into sperate funcs */
+/* Currently displays the collected inputs on the DOM currently used in index.js */
 function collectForm () {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
@@ -51,4 +51,4 @@ function collectForm () {
 
 
 
-export {collectForm,}
+export {collectForm}

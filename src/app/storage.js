@@ -9,27 +9,40 @@ import {createNewHero, removeCard} from "./dom.js"
 // Array is created at instance of method call, not existing in perpetuity
 
 function storedObjects () {
-        let storedobjects = [];
+        let objectArray = [];
         for(const key in window.localStorage){
          let object = JSON.parse(window.localStorage.getItem(key))
             if (object === null) {break;}
-            storedobjects.push(object);
+            objectArray.push(object);
           }
-          return storedobjects
+          sortByDate(objectArray)
+          return objectArray
         };
+
+function sortByDate(array){
+  console.log(array)
+  array.sort((a,b) => {return new Date(a.date) - new Date(b.date);});
+}
+
+
+
 
 function createCardFromLS (){
             let storedobjects = storedObjects();
+            console.log(storedobjects)
               storedobjects.forEach(object => {
                 createNewHero(object);
             })
+            console.log(storedobjects)
             deleteEventListener();
         };
+
 
 function sendToLocalStorage (obj) {
             const {title} = obj;
             return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
     };
+
 
 function deleteFromLS (e) {
   storedObjects().forEach(object => {
@@ -40,6 +53,7 @@ function deleteFromLS (e) {
   })
 };
 
+
 function deleteEventListener (e) {
   const deleteBtns = document.querySelectorAll(".fa-gear");
       deleteBtns.forEach(button => {
@@ -48,7 +62,7 @@ function deleteEventListener (e) {
           removeCard(e)
         })
       })
-}
+};
 
 
 export {storedObjects, createCardFromLS, sendToLocalStorage, deleteEventListener}
