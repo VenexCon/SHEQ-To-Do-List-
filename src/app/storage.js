@@ -11,14 +11,14 @@ const storedObjects = () => {
           return storedobjects
         };
 
-const create = () => {
+const createCardFromLS = () => {
             let storedobjects = storedObjects();
               storedobjects.forEach(object => {
                 createNewHero(object);
             })
         };
 
-const send = (object) => {
+const sendToLocalStorage = (object) => {
             const {title} = object;
             return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
     };
@@ -26,4 +26,4 @@ const send = (object) => {
 
 
 
-export {storedObjects, create, send}
+export {storedObjects, createCardFromLS, sendToLocalStorage}
