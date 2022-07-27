@@ -4,7 +4,7 @@ import { add } from "date-fns";
 import { createNewHero, clearForm, modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
 import {localStored} from "./storage"
 
-//factory Function
+//factory Function for form.value structure
 function Taskobject (title, date, priority, catagorey, description) {
   return {  
     title,
@@ -15,11 +15,10 @@ function Taskobject (title, date, priority, catagorey, description) {
   }
 };
 
-/* Place these in SEPERATE FILE, ADD GETTERS AND SETTERS FOR EDITING PURPOSES*/
+/*Added in object methods*/
 
-
+/* Required refactoring with now imported local.stored*/
 function deleteObject (e) {
-  
     localStored.storedObjects().forEach(object =>{
       if(e.target.closest(".hero-card").querySelector(".hero-title").innerText === object.title){
         object.deleteself();
@@ -31,7 +30,7 @@ function deleteObject (e) {
 function collectFormData (e) {
 
   e.preventDefault();
-  console.log("form prevented")
+  console.log("form submission prevented")
 
     const title = document.getElementById("task-title").value;
     const date = document.getElementById("task-date").value;
@@ -59,4 +58,4 @@ function collectForm () {
 
 
 
-export {collectForm, createFromStorage,}
+export {collectForm,}
