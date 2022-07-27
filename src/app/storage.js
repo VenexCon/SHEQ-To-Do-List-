@@ -1,4 +1,4 @@
-import {createNewHero} from "./dom.js"
+import {createNewHero, removeCard} from "./dom.js"
 
 //These should all handle LS events, editing should follow the following code
 //converts LS to array of objects
@@ -23,14 +23,32 @@ function createCardFromLS (){
               storedobjects.forEach(object => {
                 createNewHero(object);
             })
+            deleteEventListener();
         };
 
-function sendToLocalStorage (object) {
-            const {title} = object;
+function sendToLocalStorage (obj) {
+            const {title} = obj;
             return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
     };
 
+function deleteFromLS (e) {
+  storedObjects().forEach(object => {
+    if(e.target.closest(".hero-card").querySelector(".hero-title").innerText === object.title){
+      let {title} = object;
+      return window.localStorage.removeItem(`${title}`)
+    }
+  })
+};
+
+function deleteEventListener (e) {
+  const deleteBtns = document.querySelectorAll(".fa-gear");
+      deleteBtns.forEach(button => {
+        button.addEventListener("click", (e) => {
+          deleteFromLS(e)
+          removeCard(e)
+        })
+      })
+}
 
 
-
-export {storedObjects, createCardFromLS, sendToLocalStorage}
+export {storedObjects, createCardFromLS, sendToLocalStorage, deleteEventListener}

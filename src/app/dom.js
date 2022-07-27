@@ -38,6 +38,15 @@ function taskBtnEL () {
     })
 };
 
+//Collapses modal on submit
+function modalSubmitCollapse () {
+    const formBtn = document.querySelector(".form_submit")
+        formBtn.addEventListener("submit", () => {
+            modalClassToggle()
+            overlayToggle()
+        })
+}
+
 /*Date formatting*/ 
 function formatDate (date) {
     if (typeof date === 'string'){
@@ -110,16 +119,18 @@ function createNewHero (object) {
                 catagoreyText.innerText = `${catagorey}`;
                     heroCatagorey.appendChild(catagoreyText)
                         heroCard.appendChild(heroCatagorey);
- 
-    console.log("taskDOMcreated");
 };
 
-
-//exported to factory.js 
-function clearForm () { 
-    const form = document.getElementById("task-form")
-    form.reset()
+function clearDOM () {
+    const container = document.querySelector(".innerContainer")
+        while(container.firstChild) {
+            container.removeChild(container.lastChild)
+    }
 };
+
+function removeCard (e) {
+    e.target.closest(".hero-card").remove();
+}
 
 
 
@@ -128,7 +139,8 @@ function DOMGrabs () {
     displayAside();
     taskBtnEL();
     overlayRemoveModals();
+    modalSubmitCollapse();
 };
 
 
-export {DOMGrabs, createNewHero, clearForm, modalClassToggle, overlayToggle};
+export {DOMGrabs, createNewHero, modalClassToggle, overlayToggle, clearDOM, removeCard};

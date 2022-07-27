@@ -1,14 +1,15 @@
 import "./style/style.scss";
 import { DOMGrabs } from "./app/dom";
 import { collectForm} from "./app/factory";
-import {localStored} from "./storage.js";
+import {createCardFromLS, deleteEventListener} from "./app/storage";
 
 
 
 const DOM = function domEvents (e) {
     DOMGrabs(e);
     collectForm(e);
-    localStored.create()
+    createCardFromLS()
+    deleteEventListener(e)
    
 };
 
