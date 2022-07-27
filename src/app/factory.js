@@ -15,9 +15,9 @@ function Taskobject (title, date, priority, catagorey, description) {
   }
 };
 
-/*Added in object methods*/
 
-/* Required refactoring with now imported local.stored*/
+/*Stored objects converts all LS to objects, this then matches the correct object and calls the desired method*/
+/*Refactor methods to include edit props and delete/remove/check self*/
 function deleteObject (e) {
     storedObjects().forEach(object =>{
       if(e.target.closest(".hero-card").querySelector(".hero-title").innerText === object.title){
@@ -26,7 +26,7 @@ function deleteObject (e) {
     })
 };
 
-/* Collects data from form inputs for local storage and DOM creation */
+/* Collects data from form inputs, returns new object. */
 function collectFormData (e) {
 
   e.preventDefault();
@@ -44,7 +44,7 @@ function collectFormData (e) {
 };
 
 
-/* Currently displays the collected inputs on the DOM */
+/* Currently displays the collected inputs on the DOM, Review splitting of this into sperate funcs */
 function collectForm () {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
