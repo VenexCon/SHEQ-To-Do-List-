@@ -1,9 +1,8 @@
 
 
-function localStored () {
-    return {
-
-    storageArray : () => {
+const localStored = (() => {
+   
+    storedObjects : () => {
         let storedobjects = [];
         for(const key in window.localStorage){
          let object = JSON.parse(window.localStorage.getItem(key))
@@ -28,7 +27,7 @@ function localStored () {
     
     }
 
-}
+})
 
 
 export {localStored}
