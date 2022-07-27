@@ -44,38 +44,13 @@ function collectFormData (e) {
     return newTask
 };
 
-/* time_stamp is used to retrieve for edit and deletion*/
-function sendToStorage (obj) {
-  const {title} = obj
-  return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
-};
-
-
-/* Retrives from storage and returns array of objects to be modified*/
-function retrieveFromStorage () {
-  let storedobjects = [];
-  for(const key in window.localStorage){
-   let object = JSON.parse(window.localStorage.getItem(key))
-      if (object === null) {break;}
-      storedobjects.push(object);
-    }
-    return storedobjects
-};
-
-/* Creates cards from LS, and adds methods*/
-function createFromStorage () {
-  let storedobjects = retrieveFromStorage();
-    storedobjects.forEach(object => {
-      createNewHero(object);
-    })
-};
 
 /* Currently displays the collected inputs on the DOM */
 function collectForm () {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
         createNewHero(collectFormData(e))
-        sendToStorage(collectFormData(e))
+        localStored.send(collectFormData(e))
         modalClassToggle();
         overlayToggle()
         return clearForm();  
