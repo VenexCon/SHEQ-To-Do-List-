@@ -1,6 +1,6 @@
 import {createNewHero} from "./dom.js"
 
-const localStored = (() => {
+const localStored = {
    
     storedObjects : () => {
         let storedobjects = [];
@@ -22,12 +22,9 @@ const localStored = (() => {
     send: (object) => {
             const {title} = object
             return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
-        },
+       {,
 
-    
-    }
-
-})
+}
 
 
 export {localStored}
