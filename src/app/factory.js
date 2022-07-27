@@ -2,7 +2,7 @@
 
 import { add } from "date-fns";
 import { createNewHero, clearForm, modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
-import {storedObjects, create, send} from "./storage"
+import {storedObjects, createCardFromLS, sendToLocalStorage} from "./storage"
 
 //factory Function for form.value structure
 function Taskobject (title, date, priority, catagorey, description) {
@@ -48,8 +48,8 @@ function collectFormData (e) {
 function collectForm () {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
-        create(collectFormData(e))
-        send(collectFormData(e))
+        createCardFromLS(collectFormData(e))
+        sendToLocalStorage(collectFormData(e))
         modalClassToggle();
         overlayToggle()
         return clearForm();  
