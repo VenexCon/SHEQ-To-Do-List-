@@ -1,5 +1,12 @@
 import {createNewHero} from "./dom.js"
 
+//These should all handle LS events, editing should follow the following code
+//converts LS to array of objects
+//loop through to match object 
+// call the setter method 
+// add back into LS, overwriting existing stringified object
+// Key is currently task title
+// Array is created all instance of method call, not existing inperpetuity
 
 function storedObjects () {
         let storedobjects = [];
