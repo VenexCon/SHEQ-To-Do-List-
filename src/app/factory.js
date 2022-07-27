@@ -48,7 +48,7 @@ function collectFormData (e) {
 function collectForm () {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
-        createCardFromLS(collectFormData(e))
+        createNewHero(collectFormData(e))
         sendToLocalStorage(collectFormData(e))
         modalClassToggle();
         overlayToggle()
