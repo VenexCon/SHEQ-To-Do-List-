@@ -1,5 +1,4 @@
 import { format, parseISO } from 'date-fns'
-import {storedObjects, sendToLocalStorage} from "./storage"
 
 //DOM Grabs
 //Aside fills screen in mobile
@@ -107,6 +106,13 @@ function createNewHero (object) {
                 icon.className = "fa-solid fa-gear"; 
                     heroEditIcon.appendChild(icon)
                         heroCard.appendChild(heroEditIcon);
+
+    const heroDeleteIcon = document.createElement("div")
+    heroDeleteIcon.classList.add("hero-edit");
+        const deleteIcon = document.createElement("i")
+            deleteIcon.className = "fa-solid fa-trash"; 
+                heroDeleteIcon.appendChild(deleteIcon)
+                    heroCard.appendChild(heroDeleteIcon);
     
     const heroDescript = document.createElement("div"); 
         heroDescript.className = "hero-description";
@@ -135,7 +141,32 @@ function removeCard (e) {
     e.target.closest(".hero-card").remove();
 };
 
+/* Editor Modal */
 
+function editModal (e) {
+    const editForm = document.createElement("form")
+        editForm.classList.add("editor")
+    
+    const title = document.createElement("input")
+        title.type = "text"
+
+    const date = document.createElement("input")
+        date.type = "date"
+
+    const priority = document.createElement("select")
+        const high = document.createElement("option")
+            high.setAttribute("value", "high")
+        const medium = document.createElement("option")
+            medium.setAttribute("value", "medium")
+        const low = document.createElement("option")
+            low.setAttribute("value", "low")
+
+        priority.appendChild(high)
+        priority.appendChild(medium)
+        priority.appendChild(low)
+
+    
+}
 
 
 //exported to index.js
@@ -146,7 +177,10 @@ function DOMGrabs () {
     modalSubmitCollapse();
 };
 
-
-export {DOMGrabs, createNewHero, 
-    modalClassToggle, overlayToggle, clearDOM, removeCard, 
+export {DOMGrabs, 
+        createNewHero, 
+        modalClassToggle, 
+        overlayToggle, 
+        clearDOM, 
+        removeCard, 
 };

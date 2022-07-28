@@ -35,8 +35,11 @@ const descriptionSetter = (state) => ({
 });
 
 function AssignMethods (object) {
-  return Object.assign(object, titleSetter(object) )
+  return Object.assign(object, titleSetter(object), 
+        dateSetter(object), prioritySetter(object),
+        catagoreySetter(object), descriptionSetter(object) )
 };
+
 
 
 /* Collects data from form inputs, returns new object. */
@@ -75,6 +78,4 @@ function collectForm () {
       });
 };
 
-
-
-export {collectForm, AssignMethods}
+export {collectForm, AssignMethods,}

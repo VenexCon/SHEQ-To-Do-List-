@@ -1,6 +1,6 @@
 import "./style/style.scss";
-import { DOMGrabs, TestEL } from "./app/dom";
-import { collectForm,} from "./app/factory";
+import { DOMGrabs } from "./app/dom";
+import { collectForm} from "./app/factory";
 import {createCardsFromLS} from "./app/storage";
 
 
@@ -8,7 +8,7 @@ import {createCardsFromLS} from "./app/storage";
 const DOM = function domEvents (e) {
     DOMGrabs(e);
     collectForm(e);
-    createCardsFromLS();
+    createCardsFromLS()
 };
 
 window.onload = DOM();

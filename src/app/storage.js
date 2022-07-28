@@ -22,6 +22,12 @@ function storedObjects () {
           return objectArray
 };
 
+function parseSingleObject (e) {
+  let key = e.target.closest(".hero-card").getAttribute("data-key")
+  let object = JSON.parse(key)
+  return AssignMethods(object)
+}
+
 //standard array
 function sortByDate(array){
   array.sort((a,b) => {return new Date(a.date) - new Date(b.date);});
@@ -59,7 +65,7 @@ function deleteFromLS (e) {
 
 
 function deleteBtnEventListener (e) {
-  const deleteBtns = document.querySelectorAll(".fa-gear");
+  const deleteBtns = document.querySelectorAll(".fa-trash");
       deleteBtns.forEach(button => {
         button.addEventListener("click", (e) => {
           deleteFromLS(e)
@@ -69,4 +75,8 @@ function deleteBtnEventListener (e) {
 };
 
 
-export {storedObjects, createCardsFromLS, sendToLocalStorage, deleteBtnEventListener, createOneCard}
+export {storedObjects, 
+        createCardsFromLS, 
+        sendToLocalStorage, 
+        deleteBtnEventListener, 
+        createOneCard}
