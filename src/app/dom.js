@@ -1,4 +1,5 @@
 import { format, parseISO } from 'date-fns'
+import {storedObjects, sendToLocalStorage} from "./storage"
 
 //DOM Grabs
 //Aside fills screen in mobile
@@ -57,12 +58,14 @@ function formatDate (date) {
 
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
-    let {title, date,priority,catagorey,description,} = object;
+    let {title, date,priority,catagorey,description,key} = object;
     const container = document.querySelector(".innerContainer")
     
     const heroCard = document.createElement("Div"); 
         heroCard.classList.add("hero-card");
+            heroCard.setAttribute(`data-key`,`${key}`)
             container.appendChild(heroCard);
+
 
     const heroCheck = document.createElement("div")
         heroCheck.classList.add("hero-icon")
@@ -134,6 +137,7 @@ function removeCard (e) {
 
 
 
+
 //exported to index.js
 function DOMGrabs () {
     displayAside();
@@ -143,4 +147,6 @@ function DOMGrabs () {
 };
 
 
-export {DOMGrabs, createNewHero, modalClassToggle, overlayToggle, clearDOM, removeCard};
+export {DOMGrabs, createNewHero, 
+    modalClassToggle, overlayToggle, clearDOM, removeCard, 
+};

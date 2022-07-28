@@ -1,42 +1,42 @@
 //Imports
 import { modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
-import { sendToLocalStorage, createOneCard} from "./storage"
+import { sendToLocalStorage, createOneCard, storedObjects} from "./storage"
 
 //factory Function for form.value structure
-function Taskobject (title, date, priority, catagorey, description) {
+function Taskobject (title, date, priority, catagorey, description, key) {
   return {  
     title,
     date,
     priority,
     catagorey,
     description,
+    key,
   }
 };
 
-const titleSetter = (state) => ({
-setTitle: (string) => {state.title = string}
-});
+const titleSetter =  (state) => ({
+  setTitle: (string) => state.title = string
+})
 
 const dateSetter = (state) => ({
-  setDate : (string) => {state.date = string}
+  setDate : (string) => state.date = string
 });
 
 const prioritySetter = (state) => ({
-  setPriority: (string) => {state.priority = string}
+  setPriority: (string) => state.priority = string
 });
 
 const catagoreySetter = (state) => ({
-  setCatagorey: (string) => {state.catagorey = string}
+  setCatagorey: (string) => state.catagorey = string
 });
 
 const descriptionSetter = (state) => ({
-  setDescription: (string) => {state.description = string}
+  setDescription: (string) => state.description = string
 });
 
 function AssignMethods (object) {
-  return Object.assign(object, titleSetter )
+  return Object.assign(object, titleSetter(object) )
 };
-
 
 
 /* Collects data from form inputs, returns new object. */
@@ -45,13 +45,15 @@ function collectFormData (e) {
   e.preventDefault();
   console.log("form submission prevented")
     //title has trim function, as it is used as a key in sendToLocalStorage
-    const title = document.getElementById("task-title").value.trim();
+    const title = document.getElementById("task-title").value;
     const date = document.getElementById("task-date").value;
     const priority = document.getElementById("task-priority").value;
     const catagorey = document.getElementById("task-catagorey").value;
     const description = document.getElementById("task-description").value;
+    const array = storedObjects()
+    let key = array.length
 
-    let newTask = Taskobject(title, date, priority,catagorey,description)
+    let newTask = Taskobject(title, date, priority,catagorey,description,key)
 
     return newTask
 };
@@ -75,6 +77,4 @@ function collectForm () {
 
 
 
-
-
-export {collectForm}
+export {collectForm, AssignMethods}

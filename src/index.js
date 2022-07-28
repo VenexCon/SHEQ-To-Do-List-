@@ -1,6 +1,6 @@
 import "./style/style.scss";
-import { DOMGrabs } from "./app/dom";
-import { collectForm} from "./app/factory";
+import { DOMGrabs, TestEL } from "./app/dom";
+import { collectForm,} from "./app/factory";
 import {createCardsFromLS} from "./app/storage";
 
 

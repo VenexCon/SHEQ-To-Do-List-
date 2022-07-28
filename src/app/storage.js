@@ -1,4 +1,5 @@
 import {createNewHero, removeCard} from "./dom.js"
+import {AssignMethods} from "./factory.js"
 
 //These should all handle LS events, editing should follow the following code
 //converts LS to array of objects
@@ -13,48 +14,47 @@ function storedObjects () {
         for(const key in window.localStorage){
          let object = JSON.parse(window.localStorage.getItem(key))
             if (object === null) {break;}
+            AssignMethods(object);
             objectArray.push(object);
           }
+          deleteBtnEventListener()
           sortByDate(objectArray)
           return objectArray
-        };
+};
 
-        //standard array
+//standard array
 function sortByDate(array){
-  console.log(array)
   array.sort((a,b) => {return new Date(a.date) - new Date(b.date);});
-}
-
+};
 
 //is called in factory.js, collectForm();
 const createOneCard = (object) => {
   createNewHero(object)
   deleteBtnEventListener()
-}
+};
 
 // is called in index.js to create all cards from LS
 function createCardsFromLS (){
             let storedobjects = storedObjects();
               storedobjects.forEach(object => {
                 createNewHero(object);
+                console.log(object)
             })
             deleteBtnEventListener();
-        };
+            console.log(storedobjects)
+};
 
 // this is used to send a single object to LS, currently overwrites a object with the same key.
 function sendToLocalStorage (obj) {
-            const {title} = obj;
-            return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
-    };
+            const {key} = obj;
+            console.log(`${key}`)
+            return window.localStorage.setItem(`${key}`, JSON.stringify(obj));
+};
 
 
 function deleteFromLS (e) {
-  storedObjects().forEach(object => {
-    if(e.target.closest(".hero-card").querySelector(".hero-title").innerText === object.title){
-      let {title} = object;
-      return window.localStorage.removeItem(`${title}`)
-    }
-  })
+      let key = e.target.closest(".hero-card").getAttribute("data-key")
+      window.localStorage.removeItem(key)
 };
 
 
