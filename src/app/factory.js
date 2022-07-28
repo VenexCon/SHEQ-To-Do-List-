@@ -1,6 +1,6 @@
 //Imports
-import { clearDOM, modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
-import { createCardFromLS, sendToLocalStorage} from "./storage"
+import { modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
+import { sendToLocalStorage, createOneCard} from "./storage"
 
 //factory Function for form.value structure
 function Taskobject (title, date, priority, catagorey, description) {
@@ -12,6 +12,32 @@ function Taskobject (title, date, priority, catagorey, description) {
     description,
   }
 };
+
+const titleSetter = (state) => ({
+setTitle: (string) => {state.title = string}
+});
+
+const dateSetter = (state) => ({
+  setDate : (string) => {state.date = string}
+});
+
+const prioritySetter = (state) => ({
+  setPriority: (string) => {state.priority = string}
+});
+
+const catagoreySetter = (state) => ({
+  setCatagorey: (string) => {state.catagorey = string}
+});
+
+const descriptionSetter = (state) => ({
+  setDescription: (string) => {state.description = string}
+});
+
+function AssignMethods (object) {
+  return Object.assign(object, titleSetter )
+};
+
+
 
 /* Collects data from form inputs, returns new object. */
 function collectFormData (e) {
@@ -35,19 +61,19 @@ function clearForm () {
   form.reset()
 };
 
-
 /* Currently displays the collected inputs on the DOM currently used in index.js */
 function collectForm () {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
-        clearDOM()
         sendToLocalStorage(collectFormData(e))
-        createCardFromLS()
+        createOneCard(collectFormData(e))
         modalClassToggle();
         overlayToggle()
         return clearForm();  
       });
 };
+
+
 
 
 

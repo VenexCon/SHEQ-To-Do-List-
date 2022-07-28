@@ -19,25 +19,29 @@ function storedObjects () {
           return objectArray
         };
 
+        //standard array
 function sortByDate(array){
   console.log(array)
   array.sort((a,b) => {return new Date(a.date) - new Date(b.date);});
 }
 
 
+//is called in factory.js, collectForm();
+const createOneCard = (object) => {
+  createNewHero(object)
+  deleteBtnEventListener()
+}
 
-
-function createCardFromLS (){
+// is called in index.js to create all cards from LS
+function createCardsFromLS (){
             let storedobjects = storedObjects();
-            console.log(storedobjects)
               storedobjects.forEach(object => {
                 createNewHero(object);
             })
-            console.log(storedobjects)
-            deleteEventListener();
+            deleteBtnEventListener();
         };
 
-
+// this is used to send a single object to LS, currently overwrites a object with the same key.
 function sendToLocalStorage (obj) {
             const {title} = obj;
             return window.localStorage.setItem(`${title}`, JSON.stringify(obj));
@@ -54,7 +58,7 @@ function deleteFromLS (e) {
 };
 
 
-function deleteEventListener (e) {
+function deleteBtnEventListener (e) {
   const deleteBtns = document.querySelectorAll(".fa-gear");
       deleteBtns.forEach(button => {
         button.addEventListener("click", (e) => {
@@ -65,4 +69,4 @@ function deleteEventListener (e) {
 };
 
 
-export {storedObjects, createCardFromLS, sendToLocalStorage, deleteEventListener}
+export {storedObjects, createCardsFromLS, sendToLocalStorage, deleteBtnEventListener, createOneCard}

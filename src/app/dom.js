@@ -130,7 +130,7 @@ function clearDOM () {
 
 function removeCard (e) {
     e.target.closest(".hero-card").remove();
-}
+};
 
 
 
