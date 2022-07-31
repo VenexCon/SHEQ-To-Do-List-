@@ -47,22 +47,18 @@ function modalSubmitCollapse () {
         })
 }
 
-/*Date formatting*/ 
-function formatDate (date) {
-    if (typeof date === 'string'){
-    return format (parseISO(date), `dd/MM/yyyy`)
-    } 
+/*Date formatting - currently Invalid*/ 
+/* function formatDate (date) {
     return format(date, `dd/MM/yyyy`);
-};
+}; */
 
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
-    let {title, date,priority,catagorey,description,key} = object;
+    let {title, date,priority,catagorey,description} = object;
     const container = document.querySelector(".innerContainer")
     
     const heroCard = document.createElement("Div"); 
         heroCard.classList.add("hero-card");
-            heroCard.setAttribute(`data-key`,`${key}`)
             container.appendChild(heroCard);
 
 
@@ -88,8 +84,8 @@ function createNewHero (object) {
     const heroDate = document.createElement("div")
         heroDate.classList.add("hero-date")
             const dateText = document.createElement("p")
-              const objdate = formatDate(date); 
-                dateText.innerText = `Due Date: ${objdate}`;
+              //const objdate = formatDate(date); 
+                dateText.innerText = `Due Date: ${date}`;
                     heroDate.appendChild(dateText)
                         heroCard.appendChild(heroDate);
     
@@ -142,31 +138,6 @@ function removeCard (e) {
 };
 
 /* Editor Modal */
-
-function editModal (e) {
-    const editForm = document.createElement("form")
-        editForm.classList.add("editor")
-    
-    const title = document.createElement("input")
-        title.type = "text"
-
-    const date = document.createElement("input")
-        date.type = "date"
-
-    const priority = document.createElement("select")
-        const high = document.createElement("option")
-            high.setAttribute("value", "high")
-        const medium = document.createElement("option")
-            medium.setAttribute("value", "medium")
-        const low = document.createElement("option")
-            low.setAttribute("value", "low")
-
-        priority.appendChild(high)
-        priority.appendChild(medium)
-        priority.appendChild(low)
-
-    
-}
 
 
 //exported to index.js

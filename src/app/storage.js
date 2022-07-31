@@ -1,69 +1,66 @@
 import {createNewHero, removeCard} from "./dom.js"
 import {AssignMethods} from "./factory.js"
 
-//These should all handle LS events, editing should follow the following code
-//converts LS to array of objects
-//loop through to match object 
-// call the setter method 
-// add back into LS, overwriting existing stringified object
-// Key is currently task title
-// Array is created at instance of method call, not existing in perpetuity
+// Remodel to ensure an array fo objects is present inside the local storage. 
 
-function storedObjects () {
-        let objectArray = [];
-        for(const key in window.localStorage){
-         let object = JSON.parse(window.localStorage.getItem(key))
-            if (object === null) {break;}
-            AssignMethods(object);
-            objectArray.push(object);
-          }
-          deleteBtnEventListener()
-          sortByDate(objectArray)
-          return objectArray
-};
+export const StoredItems = (() => {
+  
+  let objectArray = [];
 
-function parseSingleObject (e) {
-  let key = e.target.closest(".hero-card").getAttribute("data-key")
-  let object = JSON.parse(key)
-  return AssignMethods(object)
-}
+  //updates array at first load with LS objects, include check for null. 
+  const retrieveObjects=  () => {
+    let projects = JSON.parse(localStorage.getItem("projects"))
+    return projects.forEach(object => objectArray.push(object))
+  }
 
-//standard array
+
+    //2nd call
+  const createCardsFromLS = () => {
+      objectArray.forEach(object => {
+        createNewHero(object);
+        AssignMethods(object)
+        console.log(object)
+    })
+    deleteBtnEventListener();
+    console.log(`cards created`)
+  }
+
+  //called during the collectForm function in factory.js
+  const sendToArray = (obj) => {
+    return objectArray.push(obj)
+  }
+
+    //currently stores the array in LS, need to implement a check to overwrite exiting LS
+  const sendToLocalStorage= () => {
+    return localStorage.setItem("projects", JSON.stringify(objectArray));
+  }
+
+  //allows access for methods. 
+  const callArray = () => {
+    console.log(objectArray)
+    return objectArray
+  }
+
+  //called durting the form submit to create a single hero-card
+  const createOneCard = (object) => {
+    createNewHero(object)
+    deleteBtnEventListener()
+  }
+
+
+  return {
+    retrieveObjects, createCardsFromLS, sendToArray, sendToLocalStorage, callArray,
+    createOneCard
+  }
+
+})();
+
+//unsued ATM
 function sortByDate(array){
   array.sort((a,b) => {return new Date(a.date) - new Date(b.date);});
 };
 
-//is called in factory.js, collectForm();
-const createOneCard = (object) => {
-  createNewHero(object)
-  deleteBtnEventListener()
-};
-
-// is called in index.js to create all cards from LS
-function createCardsFromLS (){
-            let storedobjects = storedObjects();
-              storedobjects.forEach(object => {
-                createNewHero(object);
-                console.log(object)
-            })
-            deleteBtnEventListener();
-            console.log(storedobjects)
-};
-
-// this is used to send a single object to LS, currently overwrites a object with the same key.
-function sendToLocalStorage (obj) {
-            const {key} = obj;
-            console.log(`${key}`)
-            return window.localStorage.setItem(`${key}`, JSON.stringify(obj));
-};
-
-
-function deleteFromLS (e) {
-      let key = e.target.closest(".hero-card").getAttribute("data-key")
-      window.localStorage.removeItem(key)
-};
-
-
+//unused ATM
 function deleteBtnEventListener (e) {
   const deleteBtns = document.querySelectorAll(".fa-trash");
       deleteBtns.forEach(button => {
@@ -75,8 +72,4 @@ function deleteBtnEventListener (e) {
 };
 
 
-export {storedObjects, 
-        createCardsFromLS, 
-        sendToLocalStorage, 
-        deleteBtnEventListener, 
-        createOneCard}
+export {}

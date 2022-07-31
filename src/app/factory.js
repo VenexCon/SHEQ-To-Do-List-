@@ -1,6 +1,6 @@
 //Imports
-import { modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
-import { sendToLocalStorage, createOneCard, storedObjects} from "./storage"
+import {modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
+import {StoredItems} from "./storage"
 
 //factory Function for form.value structure
 function Taskobject (title, date, priority, catagorey, description, key) {
@@ -10,10 +10,10 @@ function Taskobject (title, date, priority, catagorey, description, key) {
     priority,
     catagorey,
     description,
-    key,
   }
 };
 
+/* Setters */
 const titleSetter =  (state) => ({
   setTitle: (string) => state.title = string
 })
@@ -41,7 +41,6 @@ function AssignMethods (object) {
 };
 
 
-
 /* Collects data from form inputs, returns new object. */
 function collectFormData (e) {
 
@@ -53,10 +52,8 @@ function collectFormData (e) {
     const priority = document.getElementById("task-priority").value;
     const catagorey = document.getElementById("task-catagorey").value;
     const description = document.getElementById("task-description").value;
-    const array = storedObjects()
-    let key = array.length
 
-    let newTask = Taskobject(title, date, priority,catagorey,description,key)
+    let newTask = Taskobject(title, date, priority,catagorey,description)
 
     return newTask
 };
@@ -66,16 +63,20 @@ function clearForm () {
   form.reset()
 };
 
+
 /* Currently displays the collected inputs on the DOM currently used in index.js */
 function collectForm () {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
-        sendToLocalStorage(collectFormData(e))
-        createOneCard(collectFormData(e))
+        StoredItems.createOneCard(collectFormData(e))
+        StoredItems.sendToArray(collectFormData(e))
+        StoredItems.sendToLocalStorage()
         modalClassToggle();
         overlayToggle()
         return clearForm();  
       });
 };
 
-export {collectForm, AssignMethods,}
+
+
+export {collectForm, AssignMethods}
