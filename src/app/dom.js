@@ -11,8 +11,8 @@ function displayAside () {
 };
 //currently only the add-task pop-up is considered a modal
 function modalClassToggle () {
-    const modal = document.querySelector(".modal-container")
-    return modal.classList.toggle("is-active")
+    const modal = document.querySelectorAll(".modal")
+    return modal.forEach(modal =>modal.classList.toggle("is-active")) 
 };
 
 function overlayToggle () {

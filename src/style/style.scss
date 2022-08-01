@@ -260,14 +260,20 @@ body{
 
 /* Project Modal - fixed position */
 .project-modal-container{
+    display: none;
     border: 3px solid black;
     border-radius: 5px;
     position: fixed;
-    width:80%;
+    width:50%;
     height:15vh;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+
+    &.is-active{
+        display: flex;
+        flex-direction: column;
+    }
 
     h3 {
         text-align: center;
@@ -301,6 +307,7 @@ body{
         button {
             align-self: flex-end;
             margin-right: 2rem;
+            height: 1.5rem;
         }
     }
 }
