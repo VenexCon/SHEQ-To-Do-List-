@@ -47,7 +47,7 @@ function collectFormData (e) {
   e.preventDefault();
   console.log("form submission prevented")
     //title has trim function, as it is used as a key in sendToLocalStorage
-    const title = document.getElementById("task-title").value;
+    const title = document.getElementById("task-title").value.trim();
     const date = document.getElementById("task-date").value;
     const priority = document.getElementById("task-priority").value;
     const catagorey = document.getElementById("task-catagorey").value;
@@ -69,8 +69,7 @@ function collectForm () {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
         StoredItems.createOneCard(collectFormData(e))
-        StoredItems.sendToArray(collectFormData(e))
-        StoredItems.sendToLocalStorage()
+        AssignMethods()
         modalClassToggle();
         overlayToggle()
         return clearForm();  
