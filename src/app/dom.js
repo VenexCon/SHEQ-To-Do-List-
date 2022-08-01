@@ -1,4 +1,4 @@
-import { format, parseISO } from 'date-fns'
+import { format, parse, parseISO } from 'date-fns'
 
 //DOM Grabs
 //Aside fills screen in mobile
@@ -48,9 +48,11 @@ function modalSubmitCollapse () {
 }
 
 /*Date formatting - currently Invalid*/ 
-/* function formatDate (date) {
+function formatDate (object) {
+    let {date} = object
+    parseISO(date)
     return format(date, `dd/MM/yyyy`);
-}; */
+};
 
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
@@ -84,13 +86,14 @@ function createNewHero (object) {
     const heroDate = document.createElement("div")
         heroDate.classList.add("hero-date")
             const dateText = document.createElement("p")
-              //const objdate = formatDate(date); 
+             // const objdate = formatDate(object); 
                 dateText.innerText = `Due Date: ${date}`;
                     heroDate.appendChild(dateText)
                         heroCard.appendChild(heroDate);
     
     const heroPriority = document.createElement("div")
         heroPriority.classList.add("hero-priority");
+        heroPriority.setAttribute("id", `${priority}`)
            const priorityText = document.createElement("p")
                 priorityText.innerText = `${priority}`;
                     heroPriority.appendChild(priorityText);

@@ -9,20 +9,24 @@ $grey: grey;
 $heroBorder: grey;
 $orange: rgb(216, 147, 19);
 
-
-
 // Hero-catagorey styles
-.hero-catagorey #high { 
+#high { 
     background-color: Red;
     color: $white;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
-.hero-catagorey #medium { 
+#medium { 
     background-color: orangered;
     color: $white;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
-.hero-catagorey #high { 
+#low { 
     background-color: green;
+    border-radius: 5px;
+    font-weight: bold;
 }
 

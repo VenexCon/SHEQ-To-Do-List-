@@ -58,6 +58,7 @@ function collectFormData (e) {
     return newTask
 };
 
+
 function clearForm () { 
   const form = document.getElementById("task-form")
   form.reset()
@@ -69,7 +70,8 @@ function collectForm () {
   const form = document.getElementById("task-form");
       form.addEventListener("submit", function (e) {
         StoredItems.createOneCard(collectFormData(e))
-        AssignMethods()
+        clearForm()
+        AssignMethods(collectFormData(e))
         modalClassToggle();
         overlayToggle()
         return clearForm();  
