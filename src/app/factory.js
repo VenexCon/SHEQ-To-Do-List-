@@ -1,5 +1,5 @@
 //Imports
-import {modalClassToggle, overlayToggle } from "./dom"; //Called during the collectformData
+import {TaskBtnToggle, overlayToggle } from "./dom"; //Called during the collectformData
 import {StoredItems} from "./storage"
 
 //factory Function for form.value structure
@@ -72,7 +72,7 @@ function collectForm () {
         StoredItems.createOneCard(collectFormData(e))
         clearForm()
         AssignMethods(collectFormData(e))
-        modalClassToggle();
+        TaskBtnToggle();
         overlayToggle()
         return clearForm();  
       });

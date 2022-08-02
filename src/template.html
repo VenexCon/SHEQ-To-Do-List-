@@ -48,7 +48,24 @@
           <div class="projects-list">
             <div class="project">Example project</div>
           </div>
+          <!-- Project Modal -->
+
+          <div class="project-modal-container modal">
+          
+            <form action="#" method="post" class="project-form">
+
+              <label for="project-name">
+                <input type="text" required maxlength="20" id="project-name" placeholder="Enter Project Name">
+              </label>
+
+              <button type="submit" class="project-submit">Submit</button>
+
+            </form>
+
+          </div>
+
         </div>
+
       </aside>
 
 <!-- Outer Container -->      
@@ -85,7 +102,7 @@
     </div>
 
 <!-- fixed positioned Modal -->
-    <div class="modal-container modal">
+    <div class="modal-container add-task-modal">
       <h3>New Task</h3>
         <hr>
       <div class="modal-form-container">
@@ -120,7 +137,7 @@
             <textarea name="description" id="task-description" cols="30" rows="10"></textarea>
           </label>
 
-          <button type="submit" class="form_submit">submit</button>
+          <button type="submit" class="project_submit">submit</button>
 
       </form>
         
@@ -129,23 +146,6 @@
     </div>
 <!-- Overlay for modal & Aside -->
     <div class="overlay"></div>
-
-<!-- Project Modal -->
-
-<div class="project-modal-container modal">
-  <h3>Project</h3>
-
-  <form action="#" method="post" class="project-form">
-
-    <label for="project-name">
-      <input type="text" required maxlength="20" id="project-name" placeholder="Enter Project Name">
-    </label>
-
-    <button type="submit" id="project-submit">Submit</button>
-
-  </form>
-
-</div>
      
 <!-- Editor Modal -->
 

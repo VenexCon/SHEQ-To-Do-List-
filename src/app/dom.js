@@ -9,12 +9,43 @@ function displayAside () {
         return aside.classList.toggle("is-active");
     })
 };
-//currently only the add-task pop-up is considered a modal
-function modalClassToggle () {
-    const modal = document.querySelectorAll(".modal")
-    return modal.forEach(modal =>modal.classList.toggle("is-active")) 
+
+//currently reffered as the task button
+function TaskBtnToggle () {
+    const task = document.querySelector(".add-task-modal")
+    return task.classList.toggle("is-active") 
 };
 
+/* displays modal upon taskbtn click  */
+function taskBtnEL () {
+    const taskBtn = document.querySelector(".addTaskButton")
+    taskBtn.addEventListener("click", (e) => {
+        TaskBtnToggle();
+        overlayToggle()
+    })
+};
+
+//Add project Toggle & EL 
+const projectToggle = () => {
+    const modal = document.querySelector(".project-modal-container")
+    modal.classList.toggle("is-active")
+};
+
+const projectModalEl = () => {
+    const addProjectBtn = document.querySelector(".add-project")
+    addProjectBtn.addEventListener("click", () => {
+        projectToggle();
+    })
+};
+
+const projectSubmitEL = () => {
+    const projectSubmitBtn = document.querySelector(".project_submit")
+    projectSubmitBtn.addEventListener("submit", () => {
+        projectToggle()
+    })
+};
+
+/* inserts an overlay, which can beclicked to remove all overlays */
 function overlayToggle () {
     const overlay = document.querySelector(".overlay")
     return overlay.classList.toggle("is-active");
@@ -25,24 +56,15 @@ function overlayRemoveModals () {
     const overlay = document.querySelector(".overlay");
     overlay.addEventListener("click", () => {
         overlayToggle()
-        modalClassToggle()
+        TaskBtnToggle()
     })
 };
 
-/* displays modal upon taskbtn click  */
-function taskBtnEL () {
-    const taskBtn = document.querySelector(".addTaskButton")
-    taskBtn.addEventListener("click", (e) => {
-        modalClassToggle();
-        overlayToggle ()
-    })
-};
-
-//Collapses modal on submit
+//Collapses modals on submit
 function modalSubmitCollapse () {
-    const formBtn = document.querySelector(".form_submit")
+    const formBtn = document.querySelector(".project_submit")
         formBtn.addEventListener("submit", () => {
-            modalClassToggle()
+            TaskBtnToggle()
             overlayToggle()
         })
 }
@@ -129,6 +151,23 @@ function createNewHero (object) {
                         heroCard.appendChild(heroCatagorey);
 };
 
+/* Creates a named project Div and appends it to aside-left */
+
+const createProjectCard = (object) => {
+ const {title} = object;
+
+ const parent = document.querySelector(".projects-list")
+
+ const projectContainer = document.createElement("div")
+    projectContainer.classList.add(".project")
+
+
+
+
+}
+
+
+//currently unused
 function clearDOM () {
     const container = document.querySelector(".innerContainer")
         while(container.firstChild) {
@@ -136,11 +175,12 @@ function clearDOM () {
     }
 };
 
+
 function removeCard (e) {
     e.target.closest(".hero-card").remove();
 };
 
-/* Editor Modal */
+
 
 
 //exported to index.js
@@ -149,11 +189,13 @@ function DOMGrabs () {
     taskBtnEL();
     overlayRemoveModals();
     modalSubmitCollapse();
+    projectModalEl()
+    projectSubmitEL()
 };
 
 export {DOMGrabs, 
         createNewHero, 
-        modalClassToggle, 
+        TaskBtnToggle, 
         overlayToggle, 
         clearDOM, 
         removeCard, 
