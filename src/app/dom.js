@@ -161,10 +161,12 @@ const createProjectCard = (object) => {
  const projectContainer = document.createElement("div")
     projectContainer.classList.add(".project")
 
-
-
-
-}
+ const projectTitle = document.createElement("p")
+        projectTitle.innerText = `${title}`
+    
+    projectContainer.appendChild(projectTitle)
+    return parent.appendChild(projectContainer)
+};
 
 
 //currently unused
@@ -199,4 +201,5 @@ export {DOMGrabs,
         overlayToggle, 
         clearDOM, 
         removeCard, 
+        createProjectCard
 };
