@@ -158,13 +158,13 @@ const createProjectCard = (object) => {
 
  const parent = document.querySelector(".projects-list")
 
- const projectContainer = document.createElement("div")
-    projectContainer.classList.add(".project")
+ const projectContainer = document.createElement("button")
+    projectContainer.classList.add("project")
 
- const projectTitle = document.createElement("p")
-        projectTitle.innerText = `${title}`
+ //const projectTitle = document.createElement("p")
+        projectContainer.innerText = `${title}`
     
-    projectContainer.appendChild(projectTitle)
+    //projectContainer.appendChild(projectTitle)
     return parent.appendChild(projectContainer)
 };
 

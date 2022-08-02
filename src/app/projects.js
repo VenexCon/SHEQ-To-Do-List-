@@ -4,7 +4,7 @@ import { createProjectCard } from "./dom"
 
 const grabProjectForm = ((e) => {
     e.preventDefault()
-    const projectName = document.getElementById("project-name")
+    const projectName = document.getElementById("project-name").value;
     return {title: projectName}
 });
 
