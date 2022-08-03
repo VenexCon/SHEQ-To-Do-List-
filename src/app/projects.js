@@ -30,7 +30,6 @@ export const projectStorage = (() => {
         return SelectedProjectEl()
     }
 
-
     return {
         sendtoLocalStorage, retrieveProjects, createProjects, pushToProjectArray
     }
@@ -47,7 +46,6 @@ const grabProjectForm = ((e) => {
 
 const projectFormReset = () => {
     const projectForm = document.getElementById("project-form")
-    projectStorage.sendtoLocalStorage()
     return projectForm.reset()
 };
 
