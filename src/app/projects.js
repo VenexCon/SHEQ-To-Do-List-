@@ -2,6 +2,8 @@
 import { createProjectCard } from "./dom"
 import { projectToggle } from "./dom";
 
+
+// projectStorage Obj
 export const projectStorage = (() => {
 
     let projectArray = [];
@@ -11,6 +13,9 @@ export const projectStorage = (() => {
         sendtoLocalStorage()
     }
 
+    const callArray = () => {
+        return projectArray
+    }
 
     const sendtoLocalStorage = () => {
         return localStorage.setItem("projects", JSON.stringify(projectArray))
@@ -31,17 +36,34 @@ export const projectStorage = (() => {
     }
 
     return {
-        sendtoLocalStorage, retrieveProjects, createProjects, pushToProjectArray
+        sendtoLocalStorage, retrieveProjects, createProjects, pushToProjectArray, callArray
     }
 })();
 
 
+/*functional codes */
 const grabProjectForm = ((e) => {
     e.preventDefault()
     const projectName = document.getElementById("project-name").value.trim();
     projectStorage.pushToProjectArray({title: projectName})
     return {title: projectName}
 });
+
+/* Sets non-wanted cards to display: none */
+const sortTasksByProject = (e) => {
+    let selection = e.target.innerText;
+const heros = document.querySelectorAll(".hero-card")
+    heros.forEach(hero => {
+        if (hero.querySelector(".hero-project").innerText != selection){
+            hero.style.display = "none"
+        } else hero.style.display = "flex"
+    })
+};
+
+const displayAllTasks = () => {
+    const heros = document.querySelectorAll(".hero-card")
+    return heros.style.display = "flex"
+}
 
 
 const projectFormReset = () => {
@@ -54,7 +76,7 @@ const SelectedProjectEl = () => {
     const projectBtns = document.querySelectorAll(".project")
         projectBtns.forEach(button => {
             button.addEventListener("click", (e) => {
-                console.log(e.target.innerText)
+                sortTasksByProject(e)
             })
         })
  };
@@ -70,8 +92,6 @@ const projectModalEl = () => {
 
         })
 };
-
-
 
 
 export {projectModalEl, SelectedProjectEl}

@@ -39,14 +39,14 @@
       <!-- Aside Buttons -->
       <aside class="aside-left modal">
         <div class="aside-links">
-          <button class="projects">Projects</button>
+          <button class="alltasks">All Tasks</button>
           <button class="today">Today</button>
           <button class="month">Month</button>
           <button class="catagorey">Catagories</button>
           <hr>
           <button class="add-project">New Project</button>
           <div class="projects-list">
-            <div class="project">Example project</div>
+            
           </div>
           <!-- Project Modal -->
 
@@ -117,6 +117,13 @@
 
           <label for="task-description" id="TDLabel">Description:
             <textarea name="description" id="task-description" cols="30" rows="10"></textarea>
+          </label>
+
+          <label for="assigned-project">Assigned Project
+            <select name="assigned-project" id="assigned-project"> 
+              <option value="">Select a project</option>
+
+            </select>
           </label>
 
           <button type="submit" class="project_submit">submit</button>

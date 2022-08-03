@@ -1,4 +1,5 @@
 import { format, parse, parseISO } from 'date-fns'
+import { projectStorage } from './projects'
 
 //DOM Grabs
 //Aside fills screen in mobile
@@ -10,8 +11,29 @@ function displayAside () {
     })
 };
 
+/* clears options to stop array duplication. */
+const clearOptions = () => {
+    const options = document.getElementById("assigned-project")
+    while (options.hasChildNodes()) {
+        options.removeChild(options.firstChild);
+      }
+}
 
-//currently reffered as the task button
+/* Populate task modal with options from projects() */
+const populateOptions = () => {
+    let options = projectStorage.callArray()
+    clearOptions();
+    options.forEach(object => {
+        let {title} = object;
+        let option = document.createElement("option")
+            option.setAttribute("value", `${title}`)
+            option.innerText = `${title}`
+         document.getElementById("assigned-project").appendChild(option)   
+    })
+};
+
+
+//currently refered as the task button
 function TaskBtnToggle () {
     const task = document.querySelector(".add-task-modal")
     return task.classList.toggle("is-active") 
@@ -22,6 +44,7 @@ function TaskBtnToggle () {
 function taskBtnEL () {
     const taskBtn = document.querySelector(".addTaskButton")
     taskBtn.addEventListener("click", (e) => {
+        populateOptions()
         TaskBtnToggle();
         overlayToggle()
     })
@@ -34,7 +57,7 @@ const projectToggle = () => {
     modal.classList.toggle("is-active")
 };
 
-
+// places project input upon click, this appends a div to the aside. 
 const projectModalEl = () => {
     const addProjectBtn = document.querySelector(".add-project")
     addProjectBtn.addEventListener("click", () => {
@@ -42,7 +65,7 @@ const projectModalEl = () => {
     })
 };
 
-
+//once submitted, the project modal closes. 
 const projectSubmitEL = () => {
     const projectSubmitBtn = document.querySelector(".project_submit")
     projectSubmitBtn.addEventListener("submit", () => {
@@ -77,17 +100,10 @@ function modalSubmitCollapse () {
         })
 }
 
-/*Date formatting - currently Invalid*/ 
-function formatDate (object) {
-    let {date} = object
-    parseISO(date)
-    return format(date, `dd/MM/yyyy`);
-};
-
 
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
-    let {title, date,priority,catagorey,description} = object;
+    let {title, date,priority,catagorey,description, project} = object;
     const container = document.querySelector(".innerContainer")
     
     const heroCard = document.createElement("Div"); 
@@ -158,6 +174,14 @@ function createNewHero (object) {
                 catagoreyText.innerText = `${catagorey}`;
                     heroCatagorey.appendChild(catagoreyText)
                         heroCard.appendChild(heroCatagorey);
+
+    const heroProject = document.createElement("div");
+    heroProject.className = "hero-project";
+        heroProject.setAttribute("id", `${project}`)
+        const projectText = document.createElement("p")
+            projectText.innerText = `${project}`;
+                heroProject.appendChild(projectText)
+                    heroCard.appendChild(heroProject);
 };
 
 
@@ -177,10 +201,11 @@ const createProjectCard = (object) => {
     return parent.appendChild(projectContainer)
 };
 
-
+//removes card from DOM, when delete button is clicked
 function removeCard (e) {
     e.target.closest(".hero-card").remove();
 };
+
 
 //currently unused
 function clearDOM () {
@@ -190,10 +215,19 @@ function clearDOM () {
     }
 };
 
+/* Displays all tasks regardless of project assigned*/
+const displayAllTasks = () => {
+    const heros = document.querySelectorAll(".hero-card")
+    heros.forEach(hero => hero.style.display = "flex")
+    return
+}
 
-
-
-
+const displayAllTasksEL = () => {
+    const allTasksBtn = document.querySelector(".alltasks")
+        allTasksBtn.addEventListener("click", () => {
+            displayAllTasks()
+        } )
+}
 
 
 //exported to index.js
@@ -204,7 +238,9 @@ function DOMGrabs () {
     modalSubmitCollapse();
     projectModalEl()
     projectSubmitEL()
+    displayAllTasksEL();
 };
+
 
 export {DOMGrabs, 
         createNewHero, 

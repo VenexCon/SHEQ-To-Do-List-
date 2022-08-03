@@ -3,13 +3,14 @@ import {TaskBtnToggle, overlayToggle } from "./dom"; //Called during the collect
 import {StoredItems} from "./storage"
 
 //factory Function for form.value structure
-function Taskobject (title, date, priority, catagorey, description, key) {
+function Taskobject (title, date, priority, catagorey, description, project) {
   return {  
     title,
     date,
     priority,
     catagorey,
     description,
+    project,
   }
 };
 
@@ -46,14 +47,15 @@ function collectFormData (e) {
 
   e.preventDefault();
   console.log("form submission prevented")
-    //title has trim function, as it is used as a key in sendToLocalStorage
+ 
     const title = document.getElementById("task-title").value.trim();
     const date = document.getElementById("task-date").value;
     const priority = document.getElementById("task-priority").value;
     const catagorey = document.getElementById("task-catagorey").value;
     const description = document.getElementById("task-description").value;
+    const project = document.getElementById("assigned-project").value
 
-    let newTask = Taskobject(title, date, priority,catagorey,description)
+    let newTask = Taskobject(title, date, priority,catagorey,description, project)
 
     return newTask
 };
