@@ -12,7 +12,7 @@ export const StoredItems = (() => {
     let tasks = JSON.parse(localStorage.getItem("tasks"))
     if(tasks === null){return}
       tasks.forEach(task => objectArray.push(task))
-    return sortByDate(tasks)
+    return 
   }
 
 
@@ -23,7 +23,6 @@ export const StoredItems = (() => {
         AssignMethods(object)
         console.log(object)
     })
-    console.log(`cards created`)
   }
 
 
@@ -35,7 +34,6 @@ export const StoredItems = (() => {
 
     //currently stores the array in LS, called during the event listener in App
   const sendToLocalStorage= () => {
-    console.log("sendtoLocalStorage triggered")
     return localStorage.setItem("tasks", JSON.stringify(objectArray));
   }
 
@@ -50,7 +48,6 @@ export const StoredItems = (() => {
     let title = e.target.closest(".hero-card").querySelector(".hero-title").innerText
     let index = objectArray.findIndex(object => object.title === title)
     objectArray.splice(index, 1);
-    console.log("object sliced")
     sendToLocalStorage()
   }
 
@@ -69,9 +66,4 @@ export const StoredItems = (() => {
     createOneCard, deleteCard
   }
 })();
-
-//unsued ATM
-function sortByDate(array){
-  array.sort((a,b) => {return new Date(a.date) - new Date(b.date);});
-};
 

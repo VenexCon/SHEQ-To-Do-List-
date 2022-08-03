@@ -20,10 +20,6 @@ const StorageEl = () => {
 };
 
 
-
-
-
-
 const ElDom =() => {
     deleteBtnEventListener()
     StorageEl();

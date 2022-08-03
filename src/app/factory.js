@@ -46,7 +46,6 @@ function AssignMethods (object) {
 function collectFormData (e) {
 
   e.preventDefault();
-  console.log("form submission prevented")
  
     const title = document.getElementById("task-title").value.trim();
     const date = document.getElementById("task-date").value;
