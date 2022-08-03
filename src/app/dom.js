@@ -10,11 +10,13 @@ function displayAside () {
     })
 };
 
+
 //currently reffered as the task button
 function TaskBtnToggle () {
     const task = document.querySelector(".add-task-modal")
     return task.classList.toggle("is-active") 
 };
+
 
 /* displays modal upon taskbtn click  */
 function taskBtnEL () {
@@ -25,11 +27,13 @@ function taskBtnEL () {
     })
 };
 
+
 //Add project Toggle & EL 
 const projectToggle = () => {
     const modal = document.querySelector(".project-modal-container")
     modal.classList.toggle("is-active")
 };
+
 
 const projectModalEl = () => {
     const addProjectBtn = document.querySelector(".add-project")
@@ -38,6 +42,7 @@ const projectModalEl = () => {
     })
 };
 
+
 const projectSubmitEL = () => {
     const projectSubmitBtn = document.querySelector(".project_submit")
     projectSubmitBtn.addEventListener("submit", () => {
@@ -45,11 +50,13 @@ const projectSubmitEL = () => {
     })
 };
 
+
 /* inserts an overlay, which can beclicked to remove all overlays */
 function overlayToggle () {
     const overlay = document.querySelector(".overlay")
     return overlay.classList.toggle("is-active");
 }
+
 
 /* removals modals on click in background*/
 function overlayRemoveModals () {
@@ -59,6 +66,7 @@ function overlayRemoveModals () {
         TaskBtnToggle()
     })
 };
+
 
 //Collapses modals on submit
 function modalSubmitCollapse () {
@@ -75,6 +83,7 @@ function formatDate (object) {
     parseISO(date)
     return format(date, `dd/MM/yyyy`);
 };
+
 
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
@@ -151,8 +160,8 @@ function createNewHero (object) {
                         heroCard.appendChild(heroCatagorey);
 };
 
-/* Creates a named project Div and appends it to aside-left */
 
+/* Creates a named project button and appends it to aside-left */
 const createProjectCard = (object) => {
  const {title} = object;
 
@@ -169,6 +178,10 @@ const createProjectCard = (object) => {
 };
 
 
+function removeCard (e) {
+    e.target.closest(".hero-card").remove();
+};
+
 //currently unused
 function clearDOM () {
     const container = document.querySelector(".innerContainer")
@@ -178,9 +191,7 @@ function clearDOM () {
 };
 
 
-function removeCard (e) {
-    e.target.closest(".hero-card").remove();
-};
+
 
 
 
@@ -201,5 +212,6 @@ export {DOMGrabs,
         overlayToggle, 
         clearDOM, 
         removeCard, 
-        createProjectCard
+        createProjectCard,
+        projectToggle
 };

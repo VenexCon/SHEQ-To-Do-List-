@@ -8,11 +8,11 @@ export const StoredItems = (() => {
   let objectArray = [];
 
   //updates array at window load with retrieveing of objects from LS 
-  const retrieveObjects=  () => {
-    let projects = JSON.parse(localStorage.getItem("projects"))
-    if(projects === null){return}
-      projects.forEach(object => objectArray.push(object))
-    return sortByDate(projects)
+  const retrieveObjects = () => {
+    let tasks = JSON.parse(localStorage.getItem("tasks"))
+    if(tasks === null){return}
+      tasks.forEach(task => objectArray.push(task))
+    return sortByDate(tasks)
   }
 
 
@@ -36,7 +36,7 @@ export const StoredItems = (() => {
     //currently stores the array in LS, called during the event listener in App
   const sendToLocalStorage= () => {
     console.log("sendtoLocalStorage triggered")
-    return localStorage.setItem("projects", JSON.stringify(objectArray));
+    return localStorage.setItem("tasks", JSON.stringify(objectArray));
   }
 
 
