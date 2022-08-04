@@ -36,7 +36,8 @@ export const projectStorage = (() => {
     }
 
     return {
-        sendtoLocalStorage, retrieveProjects, createProjects, pushToProjectArray, callArray
+        sendtoLocalStorage, retrieveProjects, 
+        createProjects, pushToProjectArray, callArray
     }
 })();
 
@@ -60,16 +61,12 @@ const heros = document.querySelectorAll(".hero-card")
     })
 };
 
-const displayAllTasks = () => {
-    const heros = document.querySelectorAll(".hero-card")
-    return heros.style.display = "flex"
-}
-
 
 const projectFormReset = () => {
     const projectForm = document.getElementById("project-form")
     return projectForm.reset()
 };
+
 
 
 const SelectedProjectEl = () => {

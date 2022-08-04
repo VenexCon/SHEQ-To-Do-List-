@@ -1,5 +1,6 @@
 import { format, parse, parseISO } from 'date-fns'
 import { projectStorage } from './projects'
+import { StoredItems } from './storage'
 
 //DOM Grabs
 //Aside fills screen in mobile
@@ -228,6 +229,33 @@ const displayAllTasksEL = () => {
             displayAllTasks()
         } )
 }
+
+
+/* Edit Task Changes */
+
+const prompt = () => {
+    let prompt = prompt("Enter New Value")
+    return prompt
+};
+
+const setTitle = (object) => {
+    object.setTitle(prompt())
+};
+
+const getObject = (e) => {
+    let title = e.target.closest(".hero-card").querySelector(".hero-title").innerText
+    let object = StoredItems.callArray().findIndex(object => object.title === title);
+    return object
+}
+
+
+
+
+const editModalEl = () => {
+
+}
+
+
 
 
 //exported to index.js

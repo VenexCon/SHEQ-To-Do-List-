@@ -42,6 +42,9 @@ function AssignMethods (object) {
 };
 
 
+
+
+
 /* Collects data from form inputs, returns new object. */
 function collectFormData (e) {
 
