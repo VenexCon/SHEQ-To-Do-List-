@@ -21,7 +21,7 @@ export const StoredItems = (() => {
       objectArray.forEach(object => {
         createNewHero(object);
         AssignMethods(object)
-        console.log(object)
+        
     })
   }
 
@@ -40,7 +40,7 @@ export const StoredItems = (() => {
 
   //allows access for methods. 
   const callArray = () => {
-    console.log(objectArray)
+    
     return objectArray
   }
 

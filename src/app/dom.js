@@ -239,7 +239,7 @@ const editModalToggleDisplay = () => {
 
 const taskEditor = (() => {
 
-    let object; 
+    let object = null
 
     const getObject = (e) => {
         let title = e.target.closest(".hero-card").querySelector(".hero-title").innerText
@@ -248,15 +248,14 @@ const taskEditor = (() => {
     };
 
     const editorModalFill = (e) => {
-        
 
-        let {title, date, priority} = getObject(e)
+        let {title, date, priority, description} = object;
     
         document.getElementById("new-title").defaultValue = `${title}`
         document.getElementById("new-date").defaultValue = `${date}`
         document.getElementById("new-priority").defaultValue = `${priority}`
+        document.getElementById("new-description").defaultValue = `${description}`
 
-        console.log(object)
     };
 
     const editorModalSubmit = (e) => {
@@ -266,14 +265,12 @@ const taskEditor = (() => {
         let titleValue = document.getElementById("new-title").value.trim(); 
         let dateValue = document.getElementById("new-date").value;
         let priorityValue = document.getElementById("new-priority").value;
+        let descriptValue = document.getElementById("new-description").value;
 
-        let domTitle = document.querySelector(".hero-title > p").innerText = `${titleValue}`
-        let domDate = document.querySelector(".hero-date > p ").innerText = `Due Date : ${dateValue}`
-        let domPrio = document.querySelector(".hero-priority > p").innerText = `${priorityValue}`
-    
         object.setTitle(titleValue)
         object.setDate(dateValue)
         object.setPriority(priorityValue)
+        object.setDescription(descriptValue)
         StoredItems.sendToLocalStorage()
 
         return console.log("object updated")
@@ -283,7 +280,7 @@ const taskEditor = (() => {
         document.getElementById("edit-task-form").reset()
     }
 
-    return {editorModalFill, editorModalSubmit, editorReset}
+    return {editorModalFill, editorModalSubmit, editorReset,getObject}
 
 })();
 
@@ -294,6 +291,7 @@ const editorModalEL = (e) => {
         editorIcons.forEach(icon => {
              icon.addEventListener("click", (e) => {
                 editModalToggleDisplay()
+                taskEditor.getObject(e)
                 taskEditor.editorModalFill(e)
              })
         })
@@ -303,16 +301,13 @@ const editorModalSubmitEL = () => {
     const editorForm = document.getElementById("edit-task-form");
         editorForm.addEventListener("submit", (e) => {
             taskEditor.editorModalSubmit(e)
-            editModalToggleDisplay()
             taskEditor.editorReset()
+            editModalToggleDisplay()
         })
 
 } 
 
-const editorELs = () => {
-    editorModalEL()
-    editorModalSubmitEL()
-}
+
 
 
 

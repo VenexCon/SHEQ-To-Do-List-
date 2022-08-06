@@ -79,7 +79,6 @@ function collectForm () {
         AssignMethods(collectFormData(e))
         TaskBtnToggle();
         overlayToggle()
-        editorModalEL()
         return clearForm();  
       });
 };
