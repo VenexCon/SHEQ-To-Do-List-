@@ -103,12 +103,13 @@ function modalSubmitCollapse () {
 
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
-    let {title, date,priority,catagorey,description, project} = object;
+    let {title, date,priority,catagorey,description, project, index} = object;
     const container = document.querySelector(".innerContainer")
     
     const heroCard = document.createElement("Div"); 
         heroCard.classList.add("hero-card");
             container.appendChild(heroCard);
+            heroCard.setAttribute("data-index", `${index}`)
 
 
     const heroCheck = document.createElement("div")

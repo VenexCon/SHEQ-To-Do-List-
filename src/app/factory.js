@@ -5,6 +5,9 @@ import { editorModalEL } from "./dom";
 
 //factory Function for form.value structure
 function Taskobject (title, date, priority, catagorey, description, project) {
+
+  let index = StoredItems.callArray().length
+
   return {  
     title,
     date,
@@ -12,6 +15,8 @@ function Taskobject (title, date, priority, catagorey, description, project) {
     catagorey,
     description,
     project,
+    index,
+    
   }
 };
 

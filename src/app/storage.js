@@ -11,7 +11,11 @@ export const StoredItems = (() => {
   const retrieveObjects = () => {
     let tasks = JSON.parse(localStorage.getItem("tasks"))
     if(tasks === null){return}
-      tasks.forEach(task => objectArray.push(task))
+      tasks.forEach(task => {
+        task.index = objectArray.length
+        objectArray.push(task)
+        console.log(task)
+      })
     return 
   }
 
@@ -21,7 +25,7 @@ export const StoredItems = (() => {
       objectArray.forEach(object => {
         createNewHero(object);
         AssignMethods(object)
-        
+         
     })
   }
 
