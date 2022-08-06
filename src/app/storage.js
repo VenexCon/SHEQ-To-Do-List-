@@ -63,7 +63,7 @@ export const StoredItems = (() => {
 
   return {
     retrieveObjects, createCardsFromLS, sendToArray, callArray,
-    createOneCard, deleteCard
+    createOneCard, deleteCard, sendToLocalStorage
   }
 })();
 

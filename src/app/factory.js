@@ -1,6 +1,7 @@
 //Imports
 import {TaskBtnToggle, overlayToggle } from "./dom"; //Called during the collectformData
 import {StoredItems} from "./storage"
+import { editorModalEL } from "./dom";
 
 //factory Function for form.value structure
 function Taskobject (title, date, priority, catagorey, description, project) {
@@ -78,6 +79,7 @@ function collectForm () {
         AssignMethods(collectFormData(e))
         TaskBtnToggle();
         overlayToggle()
+        editorModalEL()
         return clearForm();  
       });
 };

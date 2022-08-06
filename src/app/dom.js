@@ -101,8 +101,6 @@ function modalSubmitCollapse () {
         })
 }
 
-
-
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
     let {title, date,priority,catagorey,description, project} = object;
@@ -230,29 +228,97 @@ const displayAllTasksEL = () => {
             displayAllTasks()
         } )
 }
+const editModalToggleDisplay = () => {
+    const editorModal = document.querySelector(".editor-modal")
+    return editorModal.classList.toggle("is-active")
+};
 
 
 /* Edit Task Changes */
-const prompt = () => {
-    let prompt = prompt("Enter New Value")
-    return prompt
+
+
+const taskEditor = (() => {
+
+    let object; 
+
+    const getObject = (e) => {
+        let title = e.target.closest(".hero-card").querySelector(".hero-title").innerText
+        let index = StoredItems.callArray().findIndex(object => object.title === title);
+        return object =  StoredItems.callArray()[index];
+    };
+
+    const editorModalFill = (e) => {
+        
+
+        let {title, date, priority} = getObject(e)
+    
+        document.getElementById("new-title").defaultValue = `${title}`
+        document.getElementById("new-date").defaultValue = `${date}`
+        document.getElementById("new-priority").defaultValue = `${priority}`
+
+        console.log(object)
+    };
+
+    const editorModalSubmit = (e) => {
+    
+        e.preventDefault()
+    
+        let titleValue = document.getElementById("new-title").value.trim(); 
+        let dateValue = document.getElementById("new-date").value;
+        let priorityValue = document.getElementById("new-priority").value;
+
+        let domTitle = document.querySelector(".hero-title > p").innerText = `${titleValue}`
+        let domDate = document.querySelector(".hero-date > p ").innerText = `Due Date : ${dateValue}`
+        let domPrio = document.querySelector(".hero-priority > p").innerText = `${priorityValue}`
+    
+        object.setTitle(titleValue)
+        object.setDate(dateValue)
+        object.setPriority(priorityValue)
+        StoredItems.sendToLocalStorage()
+
+        return console.log("object updated")
+    }
+
+    const editorReset = () => {
+        document.getElementById("edit-task-form").reset()
+    }
+
+    return {editorModalFill, editorModalSubmit, editorReset}
+
+})();
+
+
+
+const editorModalEL = (e) => {
+    const editorIcons = document.querySelectorAll(".fa-gear")
+        editorIcons.forEach(icon => {
+             icon.addEventListener("click", (e) => {
+                editModalToggleDisplay()
+                taskEditor.editorModalFill(e)
+             })
+        })
 };
 
+const editorModalSubmitEL = () => {
+    const editorForm = document.getElementById("edit-task-form");
+        editorForm.addEventListener("submit", (e) => {
+            taskEditor.editorModalSubmit(e)
+            editModalToggleDisplay()
+            taskEditor.editorReset()
+        })
 
-//returns the desired object 
-const getObject = (e) => {
-    let title = e.target.closest(".hero-card").querySelector(".hero-title").innerText
-    let index = StoredItems.callArray().findIndex(object => object.title === title);
-    return StoredItems.callArray()[index]
-};
+} 
+
+const editorELs = () => {
+    editorModalEL()
+    editorModalSubmitEL()
+}
 
 
-//call correct setter on object when prompt is clicked! 
-//EL's on items of array 
 
 
 //exported to index.js
-function DOMGrabs () {
+function DOMGrabs (e) {
     displayAside();
     taskBtnEL();
     overlayRemoveModals();
@@ -270,5 +336,7 @@ export {DOMGrabs,
         clearDOM, 
         removeCard, 
         createProjectCard,
-        projectToggle
+        projectToggle,
+        editorModalEL,
+        editorModalSubmitEL
 };
