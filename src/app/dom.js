@@ -102,6 +102,7 @@ function modalSubmitCollapse () {
 }
 
 
+
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
     let {title, date,priority,catagorey,description, project} = object;
@@ -232,30 +233,22 @@ const displayAllTasksEL = () => {
 
 
 /* Edit Task Changes */
-
 const prompt = () => {
     let prompt = prompt("Enter New Value")
     return prompt
 };
 
-const setTitle = (object) => {
-    object.setTitle(prompt())
-};
 
+//returns the desired object 
 const getObject = (e) => {
     let title = e.target.closest(".hero-card").querySelector(".hero-title").innerText
-    let object = StoredItems.callArray().findIndex(object => object.title === title);
-    return object
-}
+    let index = StoredItems.callArray().findIndex(object => object.title === title);
+    return StoredItems.callArray()[index]
+};
 
 
-
-
-const editModalEl = () => {
-
-}
-
-
+//call correct setter on object when prompt is clicked! 
+//EL's on items of array 
 
 
 //exported to index.js
