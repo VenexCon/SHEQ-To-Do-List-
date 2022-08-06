@@ -1,5 +1,5 @@
 import "./style/style.scss";
-import { DOMGrabs, editorModalEL, editorModalSubmitEL } from "./app/dom";
+import { DOMGrabs, editorModalSubmitEL, editorModalEL } from "./app/dom";
 import { collectForm} from "./app/factory";
 import {StoredItems} from "./app/storage";
 import { ElDom } from "./app/eventListener";

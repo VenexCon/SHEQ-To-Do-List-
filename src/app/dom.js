@@ -183,6 +183,7 @@ function createNewHero (object) {
             projectText.innerText = `${project}`;
                 heroProject.appendChild(projectText)
                     heroCard.appendChild(heroProject);
+
 };
 
 
@@ -240,13 +241,16 @@ const editModalToggleDisplay = () => {
 
 const taskEditor = (() => {
 
-    let object = null
+    let object = null;
+
 
     const getObject = (e) => {
-        let title = e.target.closest(".hero-card").querySelector(".hero-title").innerText
-        let index = StoredItems.callArray().findIndex(object => object.title === title);
-        return object =  StoredItems.callArray()[index];
+        let index = e.target.closest(".hero-card").getAttribute("data-index")
+        console.log(index)
+        return object = StoredItems.callArray()[index];
     };
+
+   
 
     const editorModalFill = (e) => {
 
@@ -262,6 +266,7 @@ const taskEditor = (() => {
     const editorModalSubmit = (e) => {
     
         e.preventDefault()
+        let {index} = object
     
         let titleValue = document.getElementById("new-title").value.trim(); 
         let dateValue = document.getElementById("new-date").value;
@@ -274,7 +279,9 @@ const taskEditor = (() => {
         object.setDescription(descriptValue)
         StoredItems.sendToLocalStorage()
 
-        return console.log("object updated")
+        const container = document.querySelector(`[data-index="${index}"]`).remove() // ensure to wrap in quotes
+        createNewHero(StoredItems.callArray()[index])
+        return object = null
     }
 
     const editorReset = () => {
@@ -286,8 +293,14 @@ const taskEditor = (() => {
 })();
 
 
+function attachEditEL (e) {
+    editModalToggleDisplay()
+    taskEditor.getObject(e)
+    taskEditor.editorModalFill(e)
+};
 
-const editorModalEL = (e) => {
+
+function editorModalEL (e) {
     const editorIcons = document.querySelectorAll(".fa-gear")
         editorIcons.forEach(icon => {
              icon.addEventListener("click", (e) => {
@@ -296,7 +309,8 @@ const editorModalEL = (e) => {
                 taskEditor.editorModalFill(e)
              })
         })
-};
+}; 
+
 
 const editorModalSubmitEL = () => {
     const editorForm = document.getElementById("edit-task-form");
@@ -306,11 +320,18 @@ const editorModalSubmitEL = () => {
             editModalToggleDisplay()
         })
 
-} 
+};
 
-
-
-
+/* const documentEL = () => {
+    document.addEventListener("click", (e) => {
+        if(e.currentTarget.className.contains("fa-gear")){
+            taskEditor.editorReset()
+            editModalToggleDisplay()
+            taskEditor.getObject(e)
+            taskEditor.editorModalFill(e)
+        }
+    })
+} */
 
 
 //exported to index.js

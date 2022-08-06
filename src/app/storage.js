@@ -1,4 +1,4 @@
-import {createNewHero} from "./dom.js"
+import {createNewHero, editorModalEL} from "./dom.js"
 import { deleteBtnEventListener } from "./eventListener";
 import { AssignMethods } from "./factory.js";
 // Remodel to ensure an array fo objects is present inside the local storage. 
@@ -25,7 +25,6 @@ export const StoredItems = (() => {
       objectArray.forEach(object => {
         createNewHero(object);
         AssignMethods(object)
-         
     })
   }
 
@@ -43,15 +42,12 @@ export const StoredItems = (() => {
 
 
   //allows access for methods. 
-  const callArray = () => {
-    
-    return objectArray
-  }
+  const callArray = () => {return objectArray}
+  
 
   const deleteCard = (e) => {
-    let title = e.target.closest(".hero-card").querySelector(".hero-title").innerText
-    let index = objectArray.findIndex(object => object.title === title)
-    objectArray.splice(index, 1);
+    let index = e.target.closest(".hero-card").getAttribute("data-index")
+    objectArray.splice(index,1)
     sendToLocalStorage()
   }
 
