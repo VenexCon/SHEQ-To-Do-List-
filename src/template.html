@@ -68,6 +68,39 @@
 
       </aside>
 
+      <!-- Editor Modal -->
+    <div class="editor-modal">
+      <form action="#" id="edit-task-form">
+        <h3>Task Editor</h3>
+        <button class="close-editor">Close</button>
+
+        <label for="new-title">Enter New Title 
+          <input type="text" id="new-title">
+        </label>
+
+        <label for="new-date">Choose a new Date
+          <input type="date" name="new-date" id="new-date">
+        </label>
+
+        <label for="new-priority">Choose a New Catagorey
+          <select id="new-priority">
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </label>
+
+        <label for="new-description">Enter New Description
+          <textarea name="new-description" id="new-description" cols="30" rows="10"></textarea>
+        </label>
+
+        <button type="submit">Submit</button>
+
+
+      </form>
+    </div>
+    
+
 <!-- Outer Container -->      
       <div class="cardcontainer">
         <div class="innerContainer">
@@ -136,37 +169,5 @@
 <!-- Overlay for modal & Aside -->
     <div class="overlay"></div>
      
-<!-- Editor Modal -->
-    <div class="editor-modal">
-      <form action="#" id="edit-task-form">
-        <h3>Task Editor</h3>
-        <button class="close-editor">Close</button>
-
-        <label for="new-title">Enter New Title 
-          <input type="text" id="new-title">
-        </label>
-
-        <label for="new-date">Choose a new Date
-          <input type="date" name="new-date" id="new-date">
-        </label>
-
-        <label for="new-priority">Choose a New Catagorey
-          <select id="new-priority">
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-        </label>
-
-        <label for="new-description">Enter New Description
-          <textarea name="new-description" id="new-description" cols="30" rows="10"></textarea>
-        </label>
-
-        <button type="submit">Submit</button>
-
-
-      </form>
-    </div>
-    
   </body>
 </html>

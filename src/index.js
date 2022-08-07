@@ -1,5 +1,5 @@
 import "./style/style.scss";
-import { DOMGrabs, editorModalSubmitEL, editorModalEL } from "./app/dom";
+import { DOMGrabs, editorModalSubmitEL,} from "./app/dom";
 import { collectForm} from "./app/factory";
 import {StoredItems} from "./app/storage";
 import { ElDom } from "./app/eventListener";
@@ -18,7 +18,6 @@ const DOM = function domEvents (e) {
     ElDom();
     projectModalEl(e)
     SelectedProjectEl(e)
-    editorModalEL(e)
     editorModalSubmitEL(e)
 };
 

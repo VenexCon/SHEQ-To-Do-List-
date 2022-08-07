@@ -1,5 +1,5 @@
-import {createNewHero, editorModalEL} from "./dom.js"
-import { deleteBtnEventListener } from "./eventListener";
+import { createNewHero,} from "./dom.js"
+import { deleteBtnEventListener, editorModalEL} from "./eventListener";
 import { AssignMethods } from "./factory.js";
 // Remodel to ensure an array fo objects is present inside the local storage. 
 
@@ -30,9 +30,7 @@ export const StoredItems = (() => {
 
 
   //called during the collectForm function in factory.js
-  const sendToArray = (obj) => {
-    return objectArray.push(obj)
-  }
+  const sendToArray = (obj) => objectArray.push(obj)
 
 
     //currently stores the array in LS, called during the event listener in App
@@ -42,7 +40,7 @@ export const StoredItems = (() => {
 
 
   //allows access for methods. 
-  const callArray = () => {return objectArray}
+  const callArray = () => objectArray;
   
 
   const deleteCard = (e) => {
@@ -58,6 +56,8 @@ export const StoredItems = (() => {
     sendToArray(object)
     sendToLocalStorage()
     deleteBtnEventListener()
+    editorModalEL()
+
   };
 
 

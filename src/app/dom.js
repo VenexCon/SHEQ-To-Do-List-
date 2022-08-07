@@ -101,6 +101,70 @@ function modalSubmitCollapse () {
         })
 }
 
+const taskEditor = (() => {
+
+    let object = null;
+
+
+    const getObject = (e) => {
+        let index = e.target.closest(".hero-card").getAttribute("data-index")
+        console.log(index)
+        return object = StoredItems.callArray()[index];
+    };
+
+   
+
+    const editorModalFill = () => {
+
+        let {title, date, priority, description} = object;
+    
+        document.getElementById("new-title").defaultValue = `${title}`
+        document.getElementById("new-date").defaultValue = `${date}`
+        document.getElementById("new-priority").defaultValue = `${priority}`
+        document.getElementById("new-description").defaultValue = `${description}`
+
+    };
+
+    const editorModalSubmit = (e) => {
+    
+        e.preventDefault()
+        let {index} = object
+    
+        let titleValue = document.getElementById("new-title").value.trim(); 
+        let dateValue = document.getElementById("new-date").value;
+        let priorityValue = document.getElementById("new-priority").value;
+        let descriptValue = document.getElementById("new-description").value;
+
+        object.setTitle(titleValue)
+        object.setDate(dateValue)
+        object.setPriority(priorityValue)
+        object.setDescription(descriptValue)
+        StoredItems.sendToLocalStorage()
+
+        const container = document.querySelector(`[data-index="${index}"]`).remove() // ensure to wrap in quotes
+        createNewHero(StoredItems.callArray()[index])
+        return object = null
+    }
+
+    const editorReset = () => {
+        document.getElementById("edit-task-form").reset()
+    }
+
+    return {editorModalFill, editorModalSubmit, editorReset,getObject}
+
+})(); 
+
+
+const editorModalSubmitEL = () => {
+    const editorForm = document.getElementById("edit-task-form");
+        editorForm.addEventListener("submit", (e) => {
+            taskEditor.editorModalSubmit(e)
+            taskEditor.editorReset()
+            editModalToggleDisplay()
+        })
+
+};
+
 /* Called to create and re-create all hero elements */
 function createNewHero (object) {
     let {title, date,priority,catagorey,description, project, index} = object;
@@ -236,104 +300,6 @@ const editModalToggleDisplay = () => {
 };
 
 
-/* Edit Task Changes */
-
-
-const taskEditor = (() => {
-
-    let object = null;
-
-
-    const getObject = (e) => {
-        let index = e.target.closest(".hero-card").getAttribute("data-index")
-        console.log(index)
-        return object = StoredItems.callArray()[index];
-    };
-
-   
-
-    const editorModalFill = (e) => {
-
-        let {title, date, priority, description} = object;
-    
-        document.getElementById("new-title").defaultValue = `${title}`
-        document.getElementById("new-date").defaultValue = `${date}`
-        document.getElementById("new-priority").defaultValue = `${priority}`
-        document.getElementById("new-description").defaultValue = `${description}`
-
-    };
-
-    const editorModalSubmit = (e) => {
-    
-        e.preventDefault()
-        let {index} = object
-    
-        let titleValue = document.getElementById("new-title").value.trim(); 
-        let dateValue = document.getElementById("new-date").value;
-        let priorityValue = document.getElementById("new-priority").value;
-        let descriptValue = document.getElementById("new-description").value;
-
-        object.setTitle(titleValue)
-        object.setDate(dateValue)
-        object.setPriority(priorityValue)
-        object.setDescription(descriptValue)
-        StoredItems.sendToLocalStorage()
-
-        const container = document.querySelector(`[data-index="${index}"]`).remove() // ensure to wrap in quotes
-        createNewHero(StoredItems.callArray()[index])
-        return object = null
-    }
-
-    const editorReset = () => {
-        document.getElementById("edit-task-form").reset()
-    }
-
-    return {editorModalFill, editorModalSubmit, editorReset,getObject}
-
-})();
-
-
-function attachEditEL (e) {
-    editModalToggleDisplay()
-    taskEditor.getObject(e)
-    taskEditor.editorModalFill(e)
-};
-
-
-function editorModalEL (e) {
-    const editorIcons = document.querySelectorAll(".fa-gear")
-        editorIcons.forEach(icon => {
-             icon.addEventListener("click", (e) => {
-                editModalToggleDisplay()
-                taskEditor.getObject(e)
-                taskEditor.editorModalFill(e)
-             })
-        })
-}; 
-
-
-const editorModalSubmitEL = () => {
-    const editorForm = document.getElementById("edit-task-form");
-        editorForm.addEventListener("submit", (e) => {
-            taskEditor.editorModalSubmit(e)
-            taskEditor.editorReset()
-            editModalToggleDisplay()
-        })
-
-};
-
-/* const documentEL = () => {
-    document.addEventListener("click", (e) => {
-        if(e.currentTarget.className.contains("fa-gear")){
-            taskEditor.editorReset()
-            editModalToggleDisplay()
-            taskEditor.getObject(e)
-            taskEditor.editorModalFill(e)
-        }
-    })
-} */
-
-
 //exported to index.js
 function DOMGrabs (e) {
     displayAside();
@@ -354,6 +320,7 @@ export {DOMGrabs,
         removeCard, 
         createProjectCard,
         projectToggle,
-        editorModalEL,
-        editorModalSubmitEL
+        editorModalSubmitEL,
+        taskEditor,
+        editModalToggleDisplay
 };

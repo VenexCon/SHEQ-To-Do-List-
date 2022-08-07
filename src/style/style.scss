@@ -52,7 +52,7 @@ body{
     .hero-card{
         border: 2px solid $heroBorder;
         border-radius: 5px;
-        min-width: 90%;
+        min-width: 70%;
         min-height: 4rem;
         display: flex;
         flex-direction: row;
@@ -137,6 +137,10 @@ body{
         align-items: center;
         justify-items: center;
         text-align: center
+    }
+
+    .editor-modal {
+        min-width: 80vw;
     }
 };
 
@@ -263,21 +267,20 @@ body{
 /* ------------ */
 
 .editor-modal {
-    width: 30vw;
+    width: 15vw;
     min-height: 10rem;
     height: fit-content;
     border: 2px solid $grey;
     border-radius: 5px;
-    position: relative;
-    transform: scale(0);
-    margin: 0 auto;
+    position: absolute;
+    right: -200%;
     transition: 0.4s;
     background-color: $white;
     z-index: 1000;
     padding: 0.5em;
 
     &.is-active {
-        transform: scale(1);
+        right:0
     }
 
     form {

@@ -1,5 +1,5 @@
 import {StoredItems} from "./storage"
-import {removeCard} from "./dom"
+import {removeCard,  taskEditor, editModalToggleDisplay} from "./dom"
 
 
 
@@ -13,6 +13,17 @@ function deleteBtnEventListener (e) {
       })
 };
 
+function editorModalEL (e) {
+  const editorIcons = document.querySelectorAll(".fa-gear")
+      editorIcons.forEach(icon => {
+           icon.addEventListener("click", (e) => {
+              editModalToggleDisplay()
+              taskEditor.getObject(e)
+              taskEditor.editorModalFill()
+           })
+      })
+};
+
 const StorageEl = () => {
     addEventListener(`storage`, () => {
         StoredItems.sendToLocalStorage();
@@ -23,7 +34,8 @@ const StorageEl = () => {
 const ElDom =() => {
     deleteBtnEventListener()
     StorageEl();
+    editorModalEL()
 
 }
 
-export {ElDom, deleteBtnEventListener}
+export {ElDom, deleteBtnEventListener, editorModalEL}
