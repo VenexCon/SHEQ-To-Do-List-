@@ -18,8 +18,7 @@ function editorModalEL (e) {
       editorIcons.forEach(icon => {
            icon.addEventListener("click", (e) => {
               editModalToggleDisplay()
-              taskEditor.getObject(e)
-              taskEditor.editorModalFill()
+              taskEditor.editorModalFill(taskEditor.getObject(e))
            })
       })
 };

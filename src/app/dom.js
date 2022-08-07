@@ -1,4 +1,5 @@
 import { format, parse, parseISO } from 'date-fns'
+import { AssignMethods } from './factory'
 import { projectStorage } from './projects'
 import { StoredItems } from './storage'
 
@@ -99,7 +100,7 @@ function modalSubmitCollapse () {
             TaskBtnToggle()
             overlayToggle()
         })
-}
+};
 
 const taskEditor = (() => {
 
@@ -108,14 +109,14 @@ const taskEditor = (() => {
 
     const getObject = (e) => {
         let index = e.target.closest(".hero-card").getAttribute("data-index")
-        console.log(index)
+        
         return object = StoredItems.callArray()[index];
     };
 
    
 
     const editorModalFill = () => {
-
+        console.log(object)
         let {title, date, priority, description} = object;
     
         document.getElementById("new-title").defaultValue = `${title}`
@@ -143,6 +144,7 @@ const taskEditor = (() => {
 
         const container = document.querySelector(`[data-index="${index}"]`).remove() // ensure to wrap in quotes
         createNewHero(StoredItems.callArray()[index])
+        AssignMethods(object)
         return object = null
     }
 

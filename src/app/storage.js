@@ -16,8 +16,14 @@ export const StoredItems = (() => {
         objectArray.push(task)
         console.log(task)
       })
-    return 
+    return arrayByDate()
   }
+
+  const arrayByDate = () => {
+    objectArray.sort(function (a, b ) {
+      return new Date(a.date) - new Date (b.date)
+    })
+  };
 
 
     //called second to create cards from LS 
@@ -46,6 +52,7 @@ export const StoredItems = (() => {
   const deleteCard = (e) => {
     let index = e.target.closest(".hero-card").getAttribute("data-index")
     objectArray.splice(index,1)
+    console.log(index)
     sendToLocalStorage()
   }
 
@@ -57,7 +64,6 @@ export const StoredItems = (() => {
     sendToLocalStorage()
     deleteBtnEventListener()
     editorModalEL()
-
   };
 
 

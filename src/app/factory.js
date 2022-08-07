@@ -1,12 +1,12 @@
 //Imports
 import {TaskBtnToggle, overlayToggle } from "./dom"; //Called during the collectformData
 import {StoredItems} from "./storage"
-import { editorModalEL } from "./dom";
 
 //factory Function for form.value structure
-function Taskobject (title, date, priority, catagorey, description, project) {
+function Taskobject (title, date, priority, catagorey, description, project,index) {
 
-  let index = StoredItems.callArray().length
+
+
 
   return {  
     title,
@@ -16,7 +16,6 @@ function Taskobject (title, date, priority, catagorey, description, project) {
     description,
     project,
     index,
-    
   }
 };
 
@@ -62,8 +61,9 @@ function collectFormData (e) {
     const catagorey = document.getElementById("task-catagorey").value;
     const description = document.getElementById("task-description").value;
     const project = document.getElementById("assigned-project").value
+    let index = StoredItems.callArray().length
 
-    let newTask = Taskobject(title, date, priority,catagorey,description, project)
+    let newTask = Taskobject(title, date, priority,catagorey,description, project, index)
 
     return newTask
 };
@@ -81,7 +81,6 @@ function collectForm () {
       form.addEventListener("submit", function (e) {
         StoredItems.createOneCard(collectFormData(e))
         clearForm()
-        AssignMethods(collectFormData(e))
         TaskBtnToggle();
         overlayToggle()
         return clearForm();  
