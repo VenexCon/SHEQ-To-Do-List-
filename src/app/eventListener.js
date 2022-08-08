@@ -17,8 +17,8 @@ function editorModalEL (e) {
   const editorIcons = document.querySelectorAll(".fa-gear")
       editorIcons.forEach(icon => {
            icon.addEventListener("click", (e) => {
-              editModalToggleDisplay()
               taskEditor.editorModalFill(taskEditor.getObject(e))
+              editModalToggleDisplay()
            })
       })
 };

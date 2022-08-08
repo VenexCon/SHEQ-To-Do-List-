@@ -1,4 +1,4 @@
-import { createNewHero,} from "./dom.js"
+import { createNewHero, editorModalSubmitEL,} from "./dom.js"
 import { deleteBtnEventListener, editorModalEL} from "./eventListener";
 import { AssignMethods } from "./factory.js";
 // Remodel to ensure an array fo objects is present inside the local storage. 
@@ -14,7 +14,6 @@ export const StoredItems = (() => {
       tasks.forEach(task => {
         task.index = objectArray.length
         objectArray.push(task)
-        console.log(task)
       })
     return arrayByDate()
   }
@@ -52,8 +51,12 @@ export const StoredItems = (() => {
   const deleteCard = (e) => {
     let index = e.target.closest(".hero-card").getAttribute("data-index")
     objectArray.splice(index,1)
-    console.log(index)
     sendToLocalStorage()
+  }
+
+   function callAllEL () {
+    deleteBtnEventListener()
+    editorModalEL()
   }
 
 
@@ -62,14 +65,13 @@ export const StoredItems = (() => {
     createNewHero(object)
     sendToArray(object)
     sendToLocalStorage()
-    deleteBtnEventListener()
-    editorModalEL()
+    callAllEL()
   };
 
 
   return {
     retrieveObjects, createCardsFromLS, sendToArray, callArray,
-    createOneCard, deleteCard, sendToLocalStorage
+    createOneCard, deleteCard, sendToLocalStorage, callAllEL
   }
 })();
 

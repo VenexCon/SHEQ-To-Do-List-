@@ -4,10 +4,6 @@ import {StoredItems} from "./storage"
 
 //factory Function for form.value structure
 function Taskobject (title, date, priority, catagorey, description, project,index) {
-
-
-
-
   return {  
     title,
     date,
@@ -64,6 +60,7 @@ function collectFormData (e) {
     let index = StoredItems.callArray().length
 
     let newTask = Taskobject(title, date, priority,catagorey,description, project, index)
+    AssignMethods(newTask)
 
     return newTask
 };

@@ -1,7 +1,7 @@
 import { format, parse, parseISO } from 'date-fns'
-import { AssignMethods } from './factory'
 import { projectStorage } from './projects'
 import { StoredItems } from './storage'
+import { editorModalEL } from './eventListener'
 
 //DOM Grabs
 //Aside fills screen in mobile
@@ -67,7 +67,7 @@ const projectModalEl = () => {
     })
 };
 
-//once submitted, the project modal closes. 
+//once submitted, the aside left project add modal closes.
 const projectSubmitEL = () => {
     const projectSubmitBtn = document.querySelector(".project_submit")
     projectSubmitBtn.addEventListener("submit", () => {
@@ -76,7 +76,7 @@ const projectSubmitEL = () => {
 };
 
 
-/* inserts an overlay, which can beclicked to remove all overlays */
+/* inserts an overlay, which can beclicked to remove the addTaskModal */
 function overlayToggle () {
     const overlay = document.querySelector(".overlay")
     return overlay.classList.toggle("is-active");
@@ -109,16 +109,14 @@ const taskEditor = (() => {
 
     const getObject = (e) => {
         let index = e.target.closest(".hero-card").getAttribute("data-index")
-        
         return object = StoredItems.callArray()[index];
     };
 
    
 
     const editorModalFill = () => {
-        console.log(object)
+        
         let {title, date, priority, description} = object;
-    
         document.getElementById("new-title").defaultValue = `${title}`
         document.getElementById("new-date").defaultValue = `${date}`
         document.getElementById("new-priority").defaultValue = `${priority}`
@@ -144,7 +142,7 @@ const taskEditor = (() => {
 
         const container = document.querySelector(`[data-index="${index}"]`).remove() // ensure to wrap in quotes
         createNewHero(StoredItems.callArray()[index])
-        AssignMethods(object)
+        StoredItems.callAllEL();
         return object = null
     }
 
