@@ -1,137 +1,153 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>SheqToDo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://kit.fontawesome.com/a587b37b46.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="https://kit.fontawesome.com/a587b37b46.js"
+      crossorigin="anonymous"
+    ></script>
   <script defer src="main.js"></script></head>
 
   <body>
-
     <!-- Parent Container replaces body -->
-<div class="app">
-
+    <div class="app">
       <!-- Nav-bar is permenant hamburger menu -->
       <nav class="nav">
-        
         <div class="hamburger-menu">
           <span></span>
           <span></span>
           <span></span>
         </div>
 
-
         <div class="title-wrapper">
           <h1 class="title">SHEQ To-Do</h1>
         </div>
 
         <div class="company-logo">
-          <img src="img/VXLogo.svg" alt="Venex Consultant Company Logo" >
+          <img src="img/VXLogo.svg" alt="Venex Consultant Company Logo" />
         </div>
-
-  
-
       </nav>
-      
 
-  <main class="main">
-      <!-- Aside Buttons -->
-      <aside class="aside-left modal">
-        <div class="aside-links">
-          <button class="alltasks">All Tasks</button>
-          <button class="today">Today</button>
-          <button class="month">Month</button>
-          <button class="catagorey">Catagories</button>
-          <hr>
-          <button class="add-project">New Project</button>
-          <div class="projects-list">
-            
+      <main class="main">
+        <!-- Aside Buttons -->
+        <aside class="aside-left modal">
+          <div class="aside-links">
+            <button class="alltasks">All Tasks</button>
+            <button class="today">Today</button>
+            <button class="month">Month</button>
+            <button class="catagorey">Catagories</button>
+            <hr />
+            <button class="add-project">New Project</button>
+            <div class="projects-list"></div>
+            <!-- Project Modal -->
+
+            <div class="project-modal-container modal">
+              <form
+                action="#"
+                method="post"
+                class="project-form"
+                id="project-form"
+              >
+                <label for="project-name">
+                  <input
+                    type="text"
+                    required
+                    maxlength="20"
+                    id="project-name"
+                    placeholder="Enter Project Name"
+                  />
+                </label>
+
+                <button type="submit" class="project-submit">Submit</button>
+              </form>
+            </div>
           </div>
-          <!-- Project Modal -->
+        </aside>
 
-          <div class="project-modal-container modal">
-          
-            <form action="#" method="post" class="project-form" id="project-form">
+        <!-- Editor Modal -->
+        <div class="editor-modal">
+          <form action="#" id="edit-task-form">
+            <h3>Task Editor</h3>
+            <button class="close-editor">Close</button>
 
-              <label for="project-name">
-                <input type="text" required maxlength="20" id="project-name" placeholder="Enter Project Name">
-              </label>
+            <label for="new-title"
+              >Enter New Title
+              <input type="text" id="new-title" />
+            </label>
 
-              <button type="submit" class="project-submit">Submit</button>
+            <label for="new-date"
+              >Choose a new Date
+              <input type="date" name="new-date" id="new-date" />
+            </label>
 
-            </form>
+            <label for="new-priority"
+              >Choose a New Catagorey
+              <select id="new-priority">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </label>
 
-          </div>
+            <label for="new-description"
+              >Enter New Description
+              <textarea
+                name="new-description"
+                id="new-description"
+                cols="30"
+                rows="10"
+              ></textarea>
+            </label>
 
+            <button type="submit">Submit</button>
+          </form>
         </div>
 
-      </aside>
-
-      <!-- Editor Modal -->
-    <div class="editor-modal">
-      <form action="#" id="edit-task-form">
-        <h3>Task Editor</h3>
-        <button class="close-editor">Close</button>
-
-        <label for="new-title">Enter New Title 
-          <input type="text" id="new-title">
-        </label>
-
-        <label for="new-date">Choose a new Date
-          <input type="date" name="new-date" id="new-date">
-        </label>
-
-        <label for="new-priority">Choose a New Catagorey
-          <select id="new-priority">
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-        </label>
-
-        <label for="new-description">Enter New Description
-          <textarea name="new-description" id="new-description" cols="30" rows="10"></textarea>
-        </label>
-
-        <button type="submit">Submit</button>
-
-
-      </form>
+        <!-- Outer Container -->
+        <div class="cardcontainer">
+          <div class="innerContainer"></div>
+          <!-- End of innerContainer -->
+        </div>
+        <!-- End of cardContainer -->
+      </main>
     </div>
-    
 
-<!-- Outer Container -->      
-      <div class="cardcontainer">
-        <div class="innerContainer">
-
-        </div> <!-- End of innerContainer -->
-      </div> <!-- End of cardContainer -->
-  
-    </main>
-</div>
- 
-<!-- fixed positioned Button -->
+    <!-- fixed positioned Button -->
     <div class="addTaskButton">
       <button><i class="fa-solid fa-plus"></i></button>
     </div>
 
-<!-- fixed positioned Modal -->
+    <!-- fixed positioned Modal -->
     <div class="modal-container add-task-modal">
       <h3>New Task</h3>
-        <hr>
+      <hr />
       <div class="modal-form-container">
         <form id="task-form" action="#" method="post">
-
-          <label for="task-title">Title:
-            <input type="text" id="task-title" required placeholder="Task Title">
+          <label for="task-title"
+            >Title:
+            <input
+              type="text"
+              id="task-title"
+              required
+              placeholder="Task Title"
+            />
           </label>
 
-          <label for="task-date">Due Date:
-            <input type ="date" required id="task-date", placeholder="dd-mm-yyyy">
+          <label for="task-date"
+            >Due Date:
+            <input
+              type="date"
+              required
+              id="task-date"
+              ,
+              placeholder="dd-mm-yyyy"
+            />
           </label>
 
-          <label for="task-priority">Priority:
+          <label for="task-priority"
+            >Priority:
             <select name="task-priority" id="task-priority">
               <option value="high">High</option>
               <option value="medium">Medium</option>
@@ -139,7 +155,8 @@
             </select>
           </label>
 
-          <label for="task-catagorey">Catagorey:
+          <label for="task-catagorey"
+            >Catagorey:
             <select name="task-catagorey" id="task-catagorey">
               <option value="safety">Safety</option>
               <option value="Environmental">Environmental</option>
@@ -148,26 +165,28 @@
             </select>
           </label>
 
-          <label for="task-description" id="TDLabel">Description:
-            <textarea name="description" id="task-description" cols="30" rows="10"></textarea>
+          <label for="task-description" id="TDLabel"
+            >Description:
+            <textarea
+              name="description"
+              id="task-description"
+              cols="30"
+              rows="10"
+            ></textarea>
           </label>
 
-          <label for="assigned-project">Assigned Project
-            <select name="assigned-project" id="assigned-project"> 
+          <label for="assigned-project"
+            >Assigned Project
+            <select name="assigned-project" id="assigned-project">
               <option value="">Select a project</option>
-
             </select>
           </label>
 
           <button type="submit" class="project_submit">submit</button>
-
-      </form>
-        
-
+        </form>
       </div>
     </div>
-<!-- Overlay for modal & Aside -->
+    <!-- Overlay for modal & Aside -->
     <div class="overlay"></div>
-     
   </body>
 </html>

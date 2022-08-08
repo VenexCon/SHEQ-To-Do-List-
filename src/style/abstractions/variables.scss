@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=B612+Mono&family=Lato:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=B612+Mono&family=Lato:wght@300&display=swap");
 
-$baseFont:'Lato', sans-serif;
+$baseFont: "Lato", sans-serif;
 $teal: teal;
 $spanHover: white;
 $navBGcolor: rgba(160, 154, 154, 0.986);
@@ -8,26 +8,25 @@ $white: white;
 $grey: grey;
 $heroBorder: grey;
 $orange: rgb(216, 147, 19);
-$buttonGrey: #E9E9ED;
+$buttonGrey: #e9e9ed;
 
 // Hero-catagorey styles
-#high { 
-    background-color: Red;
-    color: $white;
-    border-radius: 5px;
-    font-weight: bold;
+#high {
+  background-color: Red;
+  color: $white;
+  border-radius: 5px;
+  font-weight: bold;
 }
 
-#medium { 
-    background-color: orangered;
-    color: $white;
-    border-radius: 5px;
-    font-weight: bold;
+#medium {
+  background-color: orangered;
+  color: $white;
+  border-radius: 5px;
+  font-weight: bold;
 }
 
-#low { 
-    background-color: green;
-    border-radius: 5px;
-    font-weight: bold;
+#low {
+  background-color: green;
+  border-radius: 5px;
+  font-weight: bold;
 }
-

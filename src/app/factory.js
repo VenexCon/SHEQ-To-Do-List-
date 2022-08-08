@@ -1,10 +1,18 @@
-//Imports
-import {TaskBtnToggle, overlayToggle } from "./dom"; //Called during the collectformData
-import {StoredItems} from "./storage"
+// Imports
+import { TaskBtnToggle, overlayToggle } from "./dom"; // Called during the collectformData
+import { StoredItems } from "./storage";
 
-//factory Function for form.value structure
-function Taskobject (title, date, priority, catagorey, description, project,index) {
-  return {  
+// factory Function for form.value structure
+function Taskobject(
+  title,
+  date,
+  priority,
+  catagorey,
+  description,
+  project,
+  index
+) {
+  return {
     title,
     date,
     priority,
@@ -12,78 +20,82 @@ function Taskobject (title, date, priority, catagorey, description, project,inde
     description,
     project,
     index,
-  }
-};
+  };
+}
 
 /* Setters */
-const titleSetter =  (state) => ({
-  setTitle: (string) => state.title = string
-})
+const titleSetter = (state) => ({
+  setTitle: (string) => (state.title = string),
+});
 
 const dateSetter = (state) => ({
-  setDate : (string) => state.date = string
+  setDate: (string) => (state.date = string),
 });
 
 const prioritySetter = (state) => ({
-  setPriority: (string) => state.priority = string
+  setPriority: (string) => (state.priority = string),
 });
 
 const catagoreySetter = (state) => ({
-  setCatagorey: (string) => state.catagorey = string
+  setCatagorey: (string) => (state.catagorey = string),
 });
 
 const descriptionSetter = (state) => ({
-  setDescription: (string) => state.description = string
+  setDescription: (string) => (state.description = string),
 });
 
-function AssignMethods (object) {
-  return Object.assign(object, titleSetter(object), 
-        dateSetter(object), prioritySetter(object),
-        catagoreySetter(object), descriptionSetter(object) )
-};
-
-
-
-
+function AssignMethods(object) {
+  return Object.assign(
+    object,
+    titleSetter(object),
+    dateSetter(object),
+    prioritySetter(object),
+    catagoreySetter(object),
+    descriptionSetter(object)
+  );
+}
 
 /* Collects data from form inputs, returns new object. */
-function collectFormData (e) {
-
+function collectFormData(e) {
   e.preventDefault();
- 
-    const title = document.getElementById("task-title").value.trim();
-    const date = document.getElementById("task-date").value;
-    const priority = document.getElementById("task-priority").value;
-    const catagorey = document.getElementById("task-catagorey").value;
-    const description = document.getElementById("task-description").value;
-    const project = document.getElementById("assigned-project").value
-    let index = StoredItems.callArray().length
 
-    let newTask = Taskobject(title, date, priority,catagorey,description, project, index)
-    AssignMethods(newTask)
+  const title = document.getElementById("task-title").value.trim();
+  const date = document.getElementById("task-date").value;
+  const priority = document.getElementById("task-priority").value;
+  const catagorey = document.getElementById("task-catagorey").value;
+  const description = document.getElementById("task-description").value;
+  const project = document.getElementById("assigned-project").value;
+  const index = StoredItems.callArray().length;
 
-    return newTask
-};
+  const newTask = Taskobject(
+    title,
+    date,
+    priority,
+    catagorey,
+    description,
+    project,
+    index
+  );
+  AssignMethods(newTask);
 
+  return newTask;
+}
 
-function clearForm () { 
-  const form = document.getElementById("task-form")
-  form.reset()
-};
-
+function clearForm() {
+  const form = document.getElementById("task-form");
+  form.reset();
+}
 
 /* Currently displays the collected inputs on the DOM currently used in index.js */
-function collectForm () {
+function collectForm() {
   const form = document.getElementById("task-form");
-      form.addEventListener("submit", function (e) {
-        StoredItems.createOneCard(collectFormData(e))
-        clearForm()
-        TaskBtnToggle();
-        overlayToggle()
-        return clearForm();  
-      });
-};
+  form.addEventListener("submit", (e) => {
+    StoredItems.createOneCard(collectFormData(e));
+    clearForm();
+    TaskBtnToggle();
+    overlayToggle();
+    return clearForm();
+  });
+}
 
-
-
-export {collectForm, AssignMethods}
+export { collectForm, AssignMethods };

@@ -150,7 +150,7 @@
   border-radius: 3px;
   font-weight: bolder;
   transition: 0.2s;
-  background-color: #E9E9ED;
+  background-color: #e9e9ed;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -176,7 +176,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #E9E9ED;
+  background-color: #e9e9ed;
   width: 100%;
 }
 .project-modal-container .project-form label {
@@ -221,6 +221,7 @@ body {
 
 .app {
   position: relative;
+  overflow: hidden;
 }
 
 .main {
@@ -477,4 +478,4 @@ body {
   right: 0;
   display: block;
   z-index: 999;
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */
